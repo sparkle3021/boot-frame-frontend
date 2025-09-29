@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.fitten
+.tmp
 
 node_modules
 .DS_Store
@@ -14,8 +16,13 @@ dist-ssr
 coverage
 *.local
 
+# 本地环境文件
+.env.local
+.env.*.local
+
 /cypress/videos/
 /cypress/screenshots/
+docs
 
 # Editor directories and files
 .vscode/*
@@ -26,5 +33,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+.cursorrules
+.cursor
 
 *.tsbuildinfo
