@@ -13,6 +13,10 @@ body {
   margin: 0;
   min-width: 1200px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-family:
+    -apple-system, 'HarmonyOS Sans SC', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue',
+    Arial, 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 }
 
 .app-layout {
@@ -62,14 +66,8 @@ body {
         position: static;
 
         .el-switch__core {
-          #{getCssVarName('switch','off-color')}: getCssVar(
-            'border-color',
-            'extra-light'
-          );
-          #{getCssVarName('switch','on-color')}: getCssVar(
-            'border-color',
-            'extra-light'
-          );
+          #{getCssVarName('switch','off-color')}: getCssVar('border-color', 'extra-light');
+          #{getCssVarName('switch','on-color')}: getCssVar('border-color', 'extra-light');
           height: 22px;
           border-radius: 11px;
           border: none;
