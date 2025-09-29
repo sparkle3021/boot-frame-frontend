@@ -8,7 +8,7 @@ import { useRequest } from 'vue-hooks-plus'
  */
 const useFetch = (service, options = {}) => {
   return useRequest(service, {
-    manual: false, // 是否手动触发
+    manual: true, // 是否手动触发
     defaultParams: [], // 默认参数
     refreshDeps: [], // 依赖刷新
     refreshDepsAction: () => {}, // 依赖刷新时的操作
