@@ -1,26 +1,24 @@
 <!doctype html>
 <html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前端项目</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>前端项目</title>
+    <link rel="stylesheet" href="/src/_core/assets/styles/wait-loading.scss" />
+  </head>
 
-  <link rel="stylesheet" href="/src/_core/assets/styles/wait-loading.scss">
-</head>
-
-<body>
-  <div id="app">
-    <div id="loading">
-      <div class="loading-ring"></div>
-      <div class="loading-text">页面加载中，请稍后 . . .</div>
-      <div class="loading-tip">（ 加载时间可能较长，取决于网络情况 ）</div>
+  <body>
+    <div id="app">
+      <div id="loading">
+        <div class="loading-ring"></div>
+        <div class="loading-text">页面加载中，请稍后 . . .</div>
+        <div class="loading-tip">（ 加载时间可能较长，取决于网络情况 ）</div>
+      </div>
     </div>
-  </div>
 
-  <script src="/src/_core/assets/scripts/loading-timer.js"></script>
-  <script type="module" src="/src/main.js"></script>
-</body>
-
+    <script type="module" src="/src/_core/assets/scripts/loading-timer.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>

@@ -5,5 +5,6 @@
   },
   "path-intellisense.autoSlashAfterDirectory": true,
   "path-intellisense.extensionOnImport": true,
-  "path-intellisense.showHiddenFiles": true
+  "path-intellisense.showHiddenFiles": true,
+  "livePreview.defaultPreviewPath": "/dist/index.html"
 }
