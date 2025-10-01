@@ -1,4 +1,5 @@
 //=== 组件
+import { Icon } from '@iconify/vue'
 import * as ElementPlus from 'element-plus'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
@@ -18,4 +19,5 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(ElementPlus)
 app.use(router)
+app.component('Icon', Icon)
 app.mount('#app')

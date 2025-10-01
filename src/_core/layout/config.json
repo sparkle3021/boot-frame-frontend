@@ -1,0 +1,11 @@
+{
+  "layout": {
+    "sidebarWidth": 240,
+    "collapsedWidth": 64,
+    "headerHeight": 60,
+    "fixedHeader": true,
+    "showBreadcrumb": true,
+    "showTabs": true,
+    "showFooter": true
+  }
+}
