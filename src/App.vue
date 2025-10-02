@@ -9,8 +9,7 @@ import Layout from '@/_core/layout/index.vue';
 <style>
 /* 全局样式 */
 #app {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
 /* 自定义滚动条 */

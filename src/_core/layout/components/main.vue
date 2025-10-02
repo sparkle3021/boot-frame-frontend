@@ -23,14 +23,18 @@ const mainStyle = computed(() => ({
 <style lang="scss" scoped>
 .app-main {
   background: var(--el-bg-color-page);
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
   
   .main-content {
     background: var(--el-bg-color);
     border-radius: 6px;
     box-shadow: var(--el-box-shadow-lighter);
     min-height: 400px;
-    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 

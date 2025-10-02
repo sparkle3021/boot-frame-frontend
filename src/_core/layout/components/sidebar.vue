@@ -181,9 +181,9 @@ const handleMenuSelect = (path) => {
   
   .sidebar-toggle {
     position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 30%;
+    right: -16px;
+    transform: translateY(-50%);
     width: 32px;
     height: 32px;
     display: flex;
@@ -194,11 +194,14 @@ const handleMenuSelect = (path) => {
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: var(--el-box-shadow-light);
     
     &:hover {
       background: var(--el-color-primary-light-9);
       border-color: var(--el-color-primary);
       color: var(--el-color-primary);
+      box-shadow: var(--el-box-shadow);
     }
     
     .el-icon {

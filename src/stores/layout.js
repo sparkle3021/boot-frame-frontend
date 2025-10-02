@@ -14,7 +14,6 @@ export const useLayoutStore = defineStore('layout', () => {
   const collapsedWidth = ref(config.collapsedWidth)
   const headerHeight = ref(config.headerHeight)
   const showFooter = ref(config.showFooter)
-  const fixedHeader = ref(config.fixedHeader)
   const showLogo = ref(config.showLogo)
   
   // 切换侧边栏折叠状态
@@ -39,7 +38,6 @@ export const useLayoutStore = defineStore('layout', () => {
     collapsedWidth,
     headerHeight,
     showFooter,
-    fixedHeader,
     showLogo,
     
     // 方法

@@ -2,8 +2,7 @@
   "layout": {
     "sidebarWidth": 240,
     "collapsedWidth": 64,
-    "headerHeight": 60,
-    "fixedHeader": true,
+    "headerHeight": 48,
     "showFooter": true,
     "showLogo": true
   }

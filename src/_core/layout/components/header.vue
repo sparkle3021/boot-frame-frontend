@@ -19,6 +19,15 @@ const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 const headerStyle = computed(() => ({
   height: `${layoutStore.headerHeight}px`
 }))
+
+// Logo尺寸（根据header高度的65%计算）
+const logoSize = computed(() => Math.floor(layoutStore.headerHeight * 0.65))
+
+// Logo样式
+const logoStyle = computed(() => ({
+  width: `${logoSize.value}px`,
+  height: `${logoSize.value}px`
+}))
 </script>
 
 <template>
@@ -26,20 +35,8 @@ const headerStyle = computed(() => ({
     <div class="header-content">
       <!-- Logo区域 -->
       <div v-if="layoutStore.showLogo" class="header-logo" @click="$router.push('/')">
-        <img src="/favicon.ico" alt="logo" />
+        <img src="/favicon.ico" alt="logo" :style="logoStyle" />
         <span class="logo-title">管理系统</span>
-      </div>
-      
-      <!-- 侧边栏折叠按钮 -->
-      <div class="header-left">
-        <el-tooltip content="展开/收起侧边栏" placement="bottom">
-          <div class="icon-btn" @click="layoutStore.toggleSidebar()">
-            <Icon 
-              :icon="layoutStore.sidebarCollapsed ? 'ep:expand' : 'ep:fold'" 
-              :width="18" 
-            />
-          </div>
-        </el-tooltip>
       </div>
       
       <!-- 右侧操作区 -->
@@ -47,7 +44,7 @@ const headerStyle = computed(() => ({
         <!-- 搜索 -->
         <el-tooltip content="搜索" placement="bottom">
           <div class="icon-btn search-btn">
-            <Icon icon="ep:search" :width="18" />
+            <Icon icon="ep:search" :width="16" />
           </div>
         </el-tooltip>
         
@@ -55,7 +52,7 @@ const headerStyle = computed(() => ({
         <el-tooltip content="消息通知" placement="bottom">
           <el-badge :value="12" :max="99" class="notification-badge">
             <div class="icon-btn">
-              <Icon icon="ep:bell" :width="18" />
+              <Icon icon="ep:bell" :width="16" />
             </div>
           </el-badge>
         </el-tooltip>
@@ -63,7 +60,7 @@ const headerStyle = computed(() => ({
         <!-- 全屏 -->
         <el-tooltip :content="isFullscreen ? '退出全屏' : '全屏'" placement="bottom">
           <div class="icon-btn" @click="toggleFullscreen">
-            <Icon :icon="isFullscreen ? 'ep:aim' : 'ep:full-screen'" :width="18" />
+            <Icon :icon="isFullscreen ? 'ep:aim' : 'ep:full-screen'" :width="16" />
           </div>
         </el-tooltip>
         
@@ -72,23 +69,23 @@ const headerStyle = computed(() => ({
           <div class="icon-btn" @click="toggleDark()">
             <Icon 
               :icon="isDark ? 'ep:sunny' : 'ep:moon'" 
-              :width="18" 
+              :width="16" 
             />
           </div>
         </el-tooltip>
         
         <!-- 分隔线 -->
-        <el-divider direction="vertical" style="height: 24px;" />
+        <el-divider direction="vertical" style="height: 20px;" />
         
         <!-- 用户菜单 -->
         <el-dropdown class="user-dropdown" trigger="click">
           <div class="user-info">
             <el-avatar 
-              :size="32" 
+              :size="28" 
               src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" 
             />
             <span class="username">管理员</span>
-            <Icon icon="ep:arrow-down" :width="14" />
+            <Icon icon="ep:arrow-down" :width="12" />
           </div>
           <template #dropdown>
             <el-dropdown-menu>
@@ -129,16 +126,16 @@ const headerStyle = computed(() => ({
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 20px;
+    padding: 0 16px;
     max-width: 100%;
   }
   
   .header-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
-    margin-right: 24px;
+    margin-right: 20px;
     transition: opacity 0.3s;
     
     &:hover {
@@ -146,38 +143,31 @@ const headerStyle = computed(() => ({
     }
     
     img {
-      width: 36px;
-      height: 36px;
       object-fit: contain;
+      transition: all 0.3s;
     }
     
     .logo-title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--el-text-color-primary);
       white-space: nowrap;
     }
   }
   
-  .header-left {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  }
-  
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     margin-left: auto;
     
     .notification-badge {
       :deep(.el-badge__content) {
         transform: translateY(-50%) translateX(50%);
-        height: 16px;
-        line-height: 16px;
+        height: 14px;
+        line-height: 14px;
         padding: 0 4px;
-        font-size: 11px;
+        font-size: 10px;
       }
     }
   }
@@ -186,8 +176,8 @@ const headerStyle = computed(() => ({
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 4px;
     cursor: pointer;
     color: var(--el-text-color-regular);
@@ -213,8 +203,8 @@ const headerStyle = computed(() => ({
     .user-info {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 4px 12px;
+      gap: 8px;
+      padding: 4px 10px;
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.3s;
@@ -224,7 +214,7 @@ const headerStyle = computed(() => ({
       }
       
       .username {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--el-text-color-primary);
         font-weight: 500;
         white-space: nowrap;
