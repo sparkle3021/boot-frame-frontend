@@ -23,6 +23,8 @@ coverage
 /cypress/videos/
 /cypress/screenshots/
 docs
+.cursor
+.cursorrules
 
 # Editor directories and files
 .vscode/*

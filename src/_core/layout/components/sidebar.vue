@@ -1,5 +1,6 @@
 <script setup>
 import { useLayoutStore } from '@/stores/layout'
+import { useRouterStore } from '@/stores/router'
 import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -7,6 +8,7 @@ import { useRoute, useRouter } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 const layoutStore = useLayoutStore()
+const routerStore = useRouterStore()
 
 // 侧边栏样式
 const sidebarStyle = computed(() => ({
@@ -15,92 +17,8 @@ const sidebarStyle = computed(() => ({
   transition: 'width 0.3s ease'
 }))
 
-// 菜单数据
-const menuList = [
-  {
-    path: '/dashboard',
-    title: '仪表盘',
-    icon: 'mdi:view-dashboard'
-  },
-  {
-    path: '/user',
-    title: '用户管理',
-    icon: 'mdi:account-group',
-    children: [
-      {
-        path: '/user/list',
-        title: '用户列表',
-        icon: 'mdi:account-multiple'
-      },
-      {
-        path: '/user/role',
-        title: '角色管理',
-        icon: 'mdi:account-key'
-      }
-    ]
-  },
-  {
-    path: '/system',
-    title: '系统管理',
-    icon: 'mdi:cog',
-    children: [
-      {
-        path: '/system/menu',
-        title: '菜单管理',
-        icon: 'mdi:menu'
-      },
-      {
-        path: '/system/dict',
-        title: '字典管理',
-        icon: 'mdi:book-open-variant'
-      },
-      {
-        path: '/system/config',
-        title: '参数设置',
-        icon: 'mdi:cog-outline'
-      }
-    ]
-  },
-  {
-    path: '/monitor',
-    title: '系统监控',
-    icon: 'mdi:monitor',
-    children: [
-      {
-        path: '/monitor/online',
-        title: '在线用户',
-        icon: 'mdi:account-circle'
-      },
-      {
-        path: '/monitor/job',
-        title: '定时任务',
-        icon: 'mdi:clock-outline'
-      },
-      {
-        path: '/monitor/server',
-        title: '服务监控',
-        icon: 'mdi:server'
-      }
-    ]
-  },
-  {
-    path: '/analysis',
-    title: '数据分析',
-    icon: 'mdi:chart-line',
-    children: [
-      {
-        path: '/analysis/report',
-        title: '数据报表',
-        icon: 'mdi:file-chart'
-      },
-      {
-        path: '/analysis/chart',
-        title: '图表展示',
-        icon: 'mdi:chart-pie'
-      }
-    ]
-  }
-]
+// 从路由 store 获取自动生成的菜单数据
+const menuList = computed(() => routerStore.menus)
 
 // 处理菜单选择
 const handleMenuSelect = (path) => {
