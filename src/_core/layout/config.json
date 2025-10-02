@@ -3,6 +3,7 @@
     "sidebarWidth": 240,
     "collapsedWidth": 64,
     "headerHeight": 48,
+    "footerHeight": 40,
     "showFooter": true,
     "showLogo": true
   }

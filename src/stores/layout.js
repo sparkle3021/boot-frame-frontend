@@ -3,25 +3,25 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useLayoutStore = defineStore('layout', () => {
-  // 从配置文件加载静态配置
   const config = layoutConfig.layout
   
-  // 侧边栏状态（唯一可动态变化的状态）
+  // 动态状态
   const sidebarCollapsed = ref(false)
   
-  // 静态配置项
+  // 静态配置
   const sidebarWidth = ref(config.sidebarWidth)
   const collapsedWidth = ref(config.collapsedWidth)
   const headerHeight = ref(config.headerHeight)
+  const footerHeight = ref(config.footerHeight)
   const showFooter = ref(config.showFooter)
   const showLogo = ref(config.showLogo)
   
-  // 切换侧边栏折叠状态
+  // 切换侧边栏状态
   const toggleSidebar = () => {
     sidebarCollapsed.value = !sidebarCollapsed.value
   }
   
-  // 设置侧边栏折叠状态
+  // 设置侧边栏状态
   const setSidebarCollapsed = (collapsed) => {
     sidebarCollapsed.value = collapsed
   }
@@ -32,15 +32,13 @@ export const useLayoutStore = defineStore('layout', () => {
   }
   
   return {
-    // 状态
     sidebarCollapsed,
     sidebarWidth,
     collapsedWidth,
     headerHeight,
+    footerHeight,
     showFooter,
     showLogo,
-    
-    // 方法
     toggleSidebar,
     setSidebarCollapsed,
     getCurrentSidebarWidth
