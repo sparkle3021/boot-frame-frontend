@@ -9,7 +9,7 @@
 混合布局包含以下部分：
 - **顶部头部**：固定在页面顶部，包含Logo、操作按钮和用户菜单
 - **侧边栏**：位于左侧，包含导航菜单，支持折叠/展开
-- **主内容区**：显示页面内容、面包屑和标签页
+- **主内容区**：显示页面内容和标签页
 - **页脚**：可选的页脚区域
 
 ## 配置文件
@@ -25,9 +25,8 @@
     "collapsedWidth": 64,     // 侧边栏折叠后宽度（px）
     "headerHeight": 60,       // 头部高度（px）
     "fixedHeader": true,      // 是否固定头部
-    "showBreadcrumb": true,   // 是否显示面包屑
-    "showTabs": true,         // 是否显示标签页
-    "showFooter": true        // 是否显示页脚
+    "showFooter": true,       // 是否显示页脚
+    "showLogo": true          // 是否显示Logo
   }
 }
 ```

@@ -12,8 +12,7 @@ const router = createRouter({
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index.vue'),
       meta: {
-        title: '仪表盘',
-        keepAlive: 'Dashboard'
+        title: '仪表盘'
       }
     },
     {
@@ -28,8 +27,7 @@ const router = createRouter({
           name: 'UserList',
           component: () => import('@/views/user/index.vue'),
           meta: {
-            title: '用户列表',
-            keepAlive: 'UserList'
+            title: '用户列表'
           }
         },
         {
@@ -70,8 +68,7 @@ const router = createRouter({
           name: 'SystemConfig',
           component: () => import('@/views/system/index.vue'),
           meta: {
-            title: '参数设置',
-            keepAlive: 'SystemConfig'
+            title: '参数设置'
           }
         }
       ]

@@ -13,10 +13,9 @@ export const useLayoutStore = defineStore('layout', () => {
   const sidebarWidth = ref(config.sidebarWidth)
   const collapsedWidth = ref(config.collapsedWidth)
   const headerHeight = ref(config.headerHeight)
-  const showBreadcrumb = ref(config.showBreadcrumb)
-  const showTabs = ref(config.showTabs)
   const showFooter = ref(config.showFooter)
   const fixedHeader = ref(config.fixedHeader)
+  const showLogo = ref(config.showLogo)
   
   // 切换侧边栏折叠状态
   const toggleSidebar = () => {
@@ -39,10 +38,9 @@ export const useLayoutStore = defineStore('layout', () => {
     sidebarWidth,
     collapsedWidth,
     headerHeight,
-    showBreadcrumb,
-    showTabs,
     showFooter,
     fixedHeader,
+    showLogo,
     
     // 方法
     toggleSidebar,

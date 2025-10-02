@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import AppFooter from './components/footer.vue'
 import AppHeader from './components/header.vue'
 import AppMain from './components/main.vue'
-import AppSidebar from './components/app-sidebar.vue'
+import AppSidebar from './components/sidebar.vue'
 
 const layoutStore = useLayoutStore()
 

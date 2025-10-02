@@ -110,12 +110,6 @@ const handleMenuSelect = (path) => {
 
 <template>
   <div class="app-sidebar" :style="sidebarStyle">
-    <!-- Logo区域 -->
-    <div class="sidebar-logo">
-      <img src="/favicon.ico" alt="logo" />
-      <span v-show="!layoutStore.sidebarCollapsed">管理系统</span>
-    </div>
-    
     <!-- 菜单 -->
     <el-scrollbar class="sidebar-scrollbar">
       <el-menu
@@ -131,14 +125,14 @@ const handleMenuSelect = (path) => {
              v-if="!item.children || item.children.length === 0"
              :index="item.path"
            >
-             <Icon v-if="item.icon" :icon="item.icon" width="16" />
+             <Icon v-if="item.icon" :icon="item.icon" width="16" class="menu-icon" />
              <template #title>{{ item.title }}</template>
            </el-menu-item>
           
           <!-- 多级菜单 -->
           <el-sub-menu v-else :index="item.path">
             <template #title>
-              <Icon v-if="item.icon" :icon="item.icon" width="16" />
+              <Icon v-if="item.icon" :icon="item.icon" width="16" class="menu-icon" />
               <span>{{ item.title }}</span>
             </template>
             
@@ -148,14 +142,14 @@ const handleMenuSelect = (path) => {
                 v-if="!child.children || child.children.length === 0"
                 :index="child.path"
               >
-                <Icon v-if="child.icon" :icon="child.icon" width="16" />
+                <Icon v-if="child.icon" :icon="child.icon" width="16" class="menu-icon" />
                 <template #title>{{ child.title }}</template>
               </el-menu-item>
               
               <!-- 三级菜单 -->
               <el-sub-menu v-else :index="child.path">
                 <template #title>
-                  <Icon v-if="child.icon" :icon="child.icon" width="16" />
+                  <Icon v-if="child.icon" :icon="child.icon" width="16" class="menu-icon" />
                   <span>{{ child.title }}</span>
                 </template>
                 
@@ -164,7 +158,7 @@ const handleMenuSelect = (path) => {
                   :key="grandChild.path"
                   :index="grandChild.path"
                 >
-                  <Icon v-if="grandChild.icon" :icon="grandChild.icon" width="16" />
+                  <Icon v-if="grandChild.icon" :icon="grandChild.icon" width="16" class="menu-icon" />
                   <template #title>{{ grandChild.title }}</template>
                 </el-menu-item>
               </el-sub-menu>
@@ -192,26 +186,6 @@ const handleMenuSelect = (path) => {
   border-right: 1px solid var(--el-border-color-light);
   display: flex;
   flex-direction: column;
-  
-  .sidebar-logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--el-border-color-light);
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--el-text-color-primary);
-    
-    img {
-      width: 28px;
-      height: 28px;
-    }
-    
-    span {
-      transition: opacity 0.3s ease;
-    }
-  }
   
   .sidebar-scrollbar {
     flex: 1;
@@ -272,12 +246,19 @@ const handleMenuSelect = (path) => {
           padding: 0 20px;
           text-align: center;
           
-          .el-icon {
-            margin-right: 0;
+          .menu-icon {
+            margin-right: 0 !important;
           }
         }
       }
     }
+  }
+  
+  // 菜单图标间距
+  .menu-icon {
+    margin-right: 12px;
+    vertical-align: middle;
+    display: inline-block;
   }
   
   .sidebar-toggle {
