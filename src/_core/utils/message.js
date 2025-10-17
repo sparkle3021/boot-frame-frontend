@@ -107,4 +107,17 @@ message.error = (messageContent, params) => {
  */
 const closeAllMessage = () => ElMessage.closeAll()
 
+/**
+ * 消息提示工具类
+ */
+export const messageUtils = {
+  message,
+  info: message.info,
+  success: message.success,
+  warning: message.warning,
+  error: message.error,
+  closeAll: closeAllMessage,
+}
+
 export { closeAllMessage, message }
+export default messageUtils
