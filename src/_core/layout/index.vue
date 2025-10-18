@@ -12,8 +12,7 @@ const getOffsetStyle = () => {
   const sidebarWidth = layoutStore.getCurrentSidebarWidth()
   return {
     marginLeft: `${sidebarWidth}px`,
-    width: `calc(100% - ${sidebarWidth}px)`,
-    transition: 'margin-left 0.3s ease, width 0.3s ease'
+    width: `calc(100% - ${sidebarWidth}px)`
   }
 }
 
