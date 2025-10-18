@@ -12,8 +12,6 @@ export const useLayoutStore = defineStore('layout', () => {
   const sidebarWidth = ref(config.sidebarWidth)
   const collapsedWidth = ref(config.collapsedWidth)
   const headerHeight = ref(config.headerHeight)
-  const footerHeight = ref(config.footerHeight)
-  const showFooter = ref(config.showFooter)
   const showLogo = ref(config.showLogo)
   
   // 切换侧边栏状态
@@ -36,8 +34,6 @@ export const useLayoutStore = defineStore('layout', () => {
     sidebarWidth,
     collapsedWidth,
     headerHeight,
-    footerHeight,
-    showFooter,
     showLogo,
     toggleSidebar,
     setSidebarCollapsed,

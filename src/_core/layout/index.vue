@@ -1,7 +1,6 @@
 <script setup>
 import { useLayoutStore } from '@/stores/layout'
 import { computed } from 'vue'
-import AppFooter from './components/footer.vue'
 import AppHeader from './components/header.vue'
 import AppMain from './components/main.vue'
 import AppSidebar from './components/sidebar.vue'
@@ -21,10 +20,9 @@ const getOffsetStyle = () => {
 // 头部固定高度
 const headerHeight = computed(() => `${layoutStore.headerHeight}px`)
 
-// 主体区域高度(视口高度 - 头部 - 底部)
+// 主体区域高度(视口高度 - 头部)
 const bodyHeight = computed(() => {
-  const footerHeight = layoutStore.showFooter ? layoutStore.footerHeight : 0
-  return `calc(100vh - ${layoutStore.headerHeight}px - ${footerHeight}px)`
+  return `calc(100vh - ${layoutStore.headerHeight}px)`
 })
 
 // 侧边栏样式
@@ -34,9 +32,8 @@ const sidebarStyle = computed(() => ({
   height: `calc(100vh - ${layoutStore.headerHeight}px)`
 }))
 
-// 主内容和底部样式
+// 主内容样式
 const mainStyle = computed(() => getOffsetStyle())
-const footerStyle = computed(() => getOffsetStyle())
 </script>
 
 <template>
@@ -53,10 +50,6 @@ const footerStyle = computed(() => getOffsetStyle())
       <div class="layout-main" :style="mainStyle">
         <AppMain />
       </div>
-    </div>
-    
-    <div v-if="layoutStore.showFooter" class="layout-footer" :style="footerStyle">
-      <AppFooter />
     </div>
   </div>
 </template>

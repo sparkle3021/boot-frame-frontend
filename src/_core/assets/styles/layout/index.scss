@@ -36,10 +36,6 @@
   overflow: hidden;
 }
 
-.layout-footer {
-  flex-shrink: 0;
-}
-
 /* ========== 头部样式 ========== */
 .app-header {
   position: fixed;
@@ -338,19 +334,6 @@
 .fade-transform-leave-to {
   opacity: 0;
   transform: translateX(-30px);
-}
-
-/* ========== 底部样式 ========== */
-.app-footer {
-  width: 100%;
-  background: var(--el-bg-color);
-  border-top: 1px solid var(--el-border-color-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  color: var(--el-text-color-secondary);
-  font-size: 12px;
 }
 
 /* ========== 响应式设计 ========== */
