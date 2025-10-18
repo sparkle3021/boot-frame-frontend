@@ -6,17 +6,77 @@ import { ref } from 'vue'
 // 主题模式
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
-const themeMode = ref(isDark.value ? 'dark' : 'light')
+
+// 主题表单数据
+const themeForm = ref({
+  themeMode: isDark.value ? 'dark' : 'light',
+  themeColor: '#409eff'
+})
+
+// 主题表单配置
+const themeColumns = [
+  {
+    label: '主题模式',
+    prop: 'themeMode',
+    valueType: 'radio',
+    options: [
+      { label: '亮色', value: 'light' },
+      { label: '暗色', value: 'dark' }
+    ]
+  },
+  {
+    label: '主题色',
+    prop: 'themeColor',
+    valueType: 'color',
+    renderField: () => {
+      return {
+        tag: 'el-tag',
+        props: { type: 'info' },
+        children: '使用 Element Plus 默认主题色'
+      }
+    }
+  }
+]
+
+// 布局信息配置
+const layoutColumns = [
+  {
+    label: '布局类型',
+    prop: 'layoutType'
+  },
+  {
+    label: '配置方式',
+    prop: 'configMethod'
+  },
+  {
+    label: '配置文件',
+    prop: 'configFile'
+  }
+]
+
+// 布局信息数据
+const layoutData = ref({
+  layoutType: '混合布局',
+  configMethod: '静态配置文件',
+  configFile: 'src/_core/layout/config.json'
+})
 
 // 处理主题变化
-const handleThemeChange = (mode) => {
+const handleThemeChange = () => {
+  const mode = themeForm.value.themeMode
   if (mode === 'light') {
     if (isDark.value) toggleDark()
   } else if (mode === 'dark') {
     if (!isDark.value) toggleDark()
   }
-  themeMode.value = mode
   ElMessage.success(`已切换到${mode === 'dark' ? '暗色' : '亮色'}主题`)
+}
+
+// 监听主题模式变化
+const handleValuesChange = (values) => {
+  if ('themeMode' in values) {
+    handleThemeChange()
+  }
 }
 </script>
 
@@ -34,18 +94,14 @@ const handleThemeChange = (mode) => {
             <span>主题设置</span>
           </template>
           
-          <el-form label-width="120px">
-            <el-form-item label="主题模式">
-              <el-radio-group v-model="themeMode" @change="handleThemeChange">
-                <el-radio value="light">亮色</el-radio>
-                <el-radio value="dark">暗色</el-radio>
-              </el-radio-group>
-            </el-form-item>
-            
-            <el-form-item label="主题色">
-              <el-tag type="info">使用 Element Plus 默认主题色</el-tag>
-            </el-form-item>
-          </el-form>
+          <PlusForm
+            v-model="themeForm"
+            :columns="themeColumns"
+            label-width="100px"
+            :rules="{}"
+            :hasFooter="false"
+            @values-change="handleValuesChange"
+          />
         </el-card>
       </el-col>
       
@@ -56,11 +112,12 @@ const handleThemeChange = (mode) => {
             <span>布局信息</span>
           </template>
           
-          <el-descriptions :column="1" border>
-            <el-descriptions-item label="布局类型">混合布局</el-descriptions-item>
-            <el-descriptions-item label="配置方式">静态配置文件</el-descriptions-item>
-            <el-descriptions-item label="配置文件">src/_core/layout/config.json</el-descriptions-item>
-          </el-descriptions>
+          <PlusDescriptions
+            :columns="layoutColumns"
+            :data="layoutData"
+            :column="1"
+            border
+          />
           
           <el-alert
             type="info"

@@ -20,6 +20,9 @@ importers:
       pinia:
         specifier: ^3.0.3
         version: 3.0.3(vue@3.5.22)
+      plus-pro-components:
+        specifier: ^0.1.30
+        version: 0.1.30(element-plus@2.11.4(vue@3.5.22))(vue@3.5.22)
       qs:
         specifier: ^6.14.0
         version: 6.14.0
@@ -1378,6 +1381,12 @@ packages:
   pkg-types@2.3.0:
     resolution: {integrity: sha512-SIqCzDRg0s9npO5XQ3tNZioRY1uK06lA41ynBC1YmFTmnY6FjUjVt6s4LoADmwoig1qqD0oK8h1p/8mlMx8Oig==}
 
+  plus-pro-components@0.1.30:
+    resolution: {integrity: sha512-tGmkC5ECu0QS7IyYuyrOTwb6Y8hTF+nUyUK47hGAdyfgs4VdjTlyaYBsNwG9n5ykile5F3vDwx8k4qWrOzEcXA==}
+    peerDependencies:
+      element-plus: ^2.3.4
+      vue: ^3.2.0
+
   postcss@8.5.6:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -1465,6 +1474,9 @@ packages:
   sirv@3.0.2:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
     engines: {node: '>=18'}
+
+  sortablejs@1.15.6:
+    resolution: {integrity: sha512-aNfiuwMEpfBM/CN6LY0ibyhxPfPbyFeBTYJKCvzkJ2GkUpazIt3H+QIPAMHwqQ7tMKaHz1Qj+rJJCqljnf4p3A==}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -2965,6 +2977,14 @@ snapshots:
       exsolve: 1.0.7
       pathe: 2.0.3
 
+  plus-pro-components@0.1.30(element-plus@2.11.4(vue@3.5.22))(vue@3.5.22):
+    dependencies:
+      '@element-plus/icons-vue': 2.3.2(vue@3.5.22)
+      element-plus: 2.11.4(vue@3.5.22)
+      lodash-es: 4.17.21
+      sortablejs: 1.15.6
+      vue: 3.5.22
+
   postcss@8.5.6:
     dependencies:
       nanoid: 3.3.11
@@ -3076,6 +3096,8 @@ snapshots:
       '@polka/url': 1.0.0-next.29
       mrmime: 2.0.1
       totalist: 3.0.1
+
+  sortablejs@1.15.6: {}
 
   source-map-js@1.2.1: {}
 

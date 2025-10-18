@@ -17,6 +17,7 @@
     "axios": "^1.12.2",
     "element-plus": "^2.11.4",
     "pinia": "^3.0.3",
+    "plus-pro-components": "^0.1.30",
     "qs": "^6.14.0",
     "vue": "^3.5.18",
     "vue-hooks-plus": "^2.4.1",
