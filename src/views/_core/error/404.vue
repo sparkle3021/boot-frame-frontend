@@ -13,7 +13,7 @@ const goBack = () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col items-center justify-center">
+  <div class="flex-1 flex flex-col items-center justify-center">
     <svg width="252" height="294">
       <title>No Found</title>
       <g fill="none" fillRule="evenodd">

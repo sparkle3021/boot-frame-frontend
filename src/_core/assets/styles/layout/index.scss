@@ -311,12 +311,11 @@
 
   /* 内容容器 */
   .main-content {
-    background: var(--el-bg-color);
-    border-radius: 6px;
-    box-shadow: var(--el-box-shadow-lighter);
-    min-height: 400px;
+    min-height: 100%;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 }
 
