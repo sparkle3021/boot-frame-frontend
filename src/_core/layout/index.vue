@@ -11,8 +11,7 @@ const layoutStore = useLayoutStore()
 const getOffsetStyle = () => {
   const sidebarWidth = layoutStore.getCurrentSidebarWidth()
   return {
-    marginLeft: `${sidebarWidth}px`,
-    width: `calc(100% - ${sidebarWidth}px)`
+    paddingLeft: `${sidebarWidth}px`
   }
 }
 

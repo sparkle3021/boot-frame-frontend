@@ -30,9 +30,9 @@
 }
 
 .layout-main {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* ========== 头部样式 ========== */

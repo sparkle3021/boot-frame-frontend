@@ -412,8 +412,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .user-list {
-  padding: 20px;
-  
   .search-card {
     margin-bottom: 20px;
   }
