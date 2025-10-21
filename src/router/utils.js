@@ -9,14 +9,14 @@
 export function loadModuleRoutes() {
   const modules = import.meta.glob('./modules/*.js', { eager: true })
   const routes = []
-  
+
   for (const path in modules) {
     const module = modules[path]
     if (module.default) {
       routes.push(module.default)
     }
   }
-  
+
   // 按 order 排序
   return routes.sort((a, b) => {
     const orderA = a.meta?.order ?? 999
@@ -33,24 +33,24 @@ export function loadModuleRoutes() {
  */
 export function generateMenuFromRoutes(routes, parentPath = '') {
   const menus = []
-  
+
   routes.forEach(route => {
     // 跳过隐藏的路由
     if (route.meta?.hidden) {
       return
     }
-    
+
     const fullPath = getFullPath(parentPath, route.path)
-    
+
     const menuItem = {
       path: fullPath,
       name: route.name,
       title: route.meta?.title || route.name,
       icon: route.meta?.icon,
       order: route.meta?.order ?? 999,
-      affix: route.meta?.affix ?? false
+      affix: route.meta?.affix ?? false,
     }
-    
+
     // 处理子路由
     if (route.children && route.children.length > 0) {
       const children = generateMenuFromRoutes(route.children, fullPath)
@@ -58,10 +58,10 @@ export function generateMenuFromRoutes(routes, parentPath = '') {
         menuItem.children = children
       }
     }
-    
+
     menus.push(menuItem)
   })
-  
+
   return menus
 }
 
@@ -75,11 +75,11 @@ function getFullPath(parentPath, path) {
   if (path.startsWith('/')) {
     return path
   }
-  
+
   if (!parentPath) {
     return `/${path}`
   }
-  
+
   return `${parentPath}/${path}`.replace(/\/+/g, '/')
 }
 
@@ -90,15 +90,15 @@ function getFullPath(parentPath, path) {
  */
 export function flattenRoutes(routes) {
   const result = []
-  
+
   routes.forEach(route => {
     result.push(route)
-    
+
     if (route.children && route.children.length > 0) {
       result.push(...flattenRoutes(route.children))
     }
   })
-  
+
   return result
 }
 
@@ -111,11 +111,11 @@ export function flattenRoutes(routes) {
 export function filterRoutes(routes, filterFn) {
   return routes.filter(route => {
     const shouldInclude = filterFn(route)
-    
+
     if (shouldInclude && route.children) {
       route.children = filterRoutes(route.children, filterFn)
     }
-    
+
     return shouldInclude
   })
 }
@@ -131,7 +131,7 @@ export function findRoute(routes, name) {
     if (route.name === name) {
       return route
     }
-    
+
     if (route.children) {
       const found = findRoute(route.children, name)
       if (found) {
@@ -139,7 +139,7 @@ export function findRoute(routes, name) {
       }
     }
   }
-  
+
   return null
 }
 
@@ -151,15 +151,18 @@ export function findRoute(routes, name) {
  */
 export function getBreadcrumbs(routes, currentPath) {
   const breadcrumbs = []
-  
+
   function findPath(routes, path, parents = []) {
     for (const route of routes) {
-      const fullPath = getFullPath(parents.length > 0 ? parents[parents.length - 1].path : '', route.path)
-      
+      const fullPath = getFullPath(
+        parents.length > 0 ? parents[parents.length - 1].path : '',
+        route.path
+      )
+
       if (fullPath === path) {
         return [...parents, route]
       }
-      
+
       if (route.children) {
         const result = findPath(route.children, path, [...parents, route])
         if (result) {
@@ -167,18 +170,17 @@ export function getBreadcrumbs(routes, currentPath) {
         }
       }
     }
-    
+
     return null
   }
-  
+
   const path = findPath(routes, currentPath)
   if (path) {
     return path.map(route => ({
       title: route.meta?.title || route.name,
-      path: getFullPath('', route.path)
+      path: getFullPath('', route.path),
     }))
   }
-  
+
   return breadcrumbs
 }
-

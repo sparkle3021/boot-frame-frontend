@@ -290,10 +290,7 @@
     & > div {
       height: auto;
       padding: eleVar('datepicker', 'year-space');
-      transition: (
-        background-color $transition-base,
-        border-color $transition-base
-      );
+      transition: (background-color $transition-base, border-color $transition-base);
     }
 
     &.disabled {
@@ -314,10 +311,7 @@
     & > div {
       height: auto;
       padding: eleVar('datepicker', 'month-space');
-      transition: (
-        background-color $transition-base,
-        border-color $transition-base
-      );
+      transition: (background-color $transition-base, border-color $transition-base);
     }
 
     &.disabled {

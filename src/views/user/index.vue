@@ -11,8 +11,8 @@ const searchColumns = [
     valueType: 'text',
     fieldProps: {
       placeholder: '请输入用户名',
-      clearable: true
-    }
+      clearable: true,
+    },
   },
   {
     label: '状态',
@@ -20,13 +20,13 @@ const searchColumns = [
     valueType: 'select',
     options: [
       { label: '启用', value: 1 },
-      { label: '禁用', value: 0 }
+      { label: '禁用', value: 0 },
     ],
     fieldProps: {
       placeholder: '请选择状态',
-      clearable: true
-    }
-  }
+      clearable: true,
+    },
+  },
 ]
 
 // 表格列配置
@@ -34,27 +34,27 @@ const columns = [
   {
     label: 'ID',
     prop: 'id',
-    width: 80
+    width: 80,
   },
   {
     label: '用户名',
-    prop: 'username'
+    prop: 'username',
   },
   {
     label: '昵称',
-    prop: 'nickname'
+    prop: 'nickname',
   },
   {
     label: '邮箱',
-    prop: 'email'
+    prop: 'email',
   },
   {
     label: '手机号',
-    prop: 'phone'
+    prop: 'phone',
   },
   {
     label: '角色',
-    prop: 'role'
+    prop: 'role',
   },
   {
     label: '状态',
@@ -63,12 +63,12 @@ const columns = [
     valueType: 'select',
     options: [
       { label: '启用', value: 1, color: 'green' },
-      { label: '禁用', value: 0, color: 'red' }
-    ]
+      { label: '禁用', value: 0, color: 'red' },
+    ],
   },
   {
     label: '创建时间',
-    prop: 'createTime'
+    prop: 'createTime',
   },
 ]
 
@@ -82,7 +82,7 @@ const mockData = [
     phone: '13800138000',
     role: '超级管理员',
     status: 1,
-    createTime: '2024-01-01 10:00:00'
+    createTime: '2024-01-01 10:00:00',
   },
   {
     id: 2,
@@ -92,7 +92,7 @@ const mockData = [
     phone: '13800138001',
     role: '普通用户',
     status: 1,
-    createTime: '2024-01-02 10:00:00'
+    createTime: '2024-01-02 10:00:00',
   },
   {
     id: 3,
@@ -102,7 +102,7 @@ const mockData = [
     phone: '13800138002',
     role: '普通用户',
     status: 0,
-    createTime: '2024-01-03 10:00:00'
+    createTime: '2024-01-03 10:00:00',
   },
   {
     id: 4,
@@ -112,7 +112,7 @@ const mockData = [
     phone: '13800138003',
     role: '普通用户',
     status: 1,
-    createTime: '2024-01-04 10:00:00'
+    createTime: '2024-01-04 10:00:00',
   },
   {
     id: 5,
@@ -122,8 +122,8 @@ const mockData = [
     phone: '13800138004',
     role: '普通用户',
     status: 0,
-    createTime: '2024-01-05 10:00:00'
-  }
+    createTime: '2024-01-05 10:00:00',
+  },
 ]
 
 // 表格数据
@@ -135,7 +135,7 @@ const selectedRows = ref([])
 const pagination = reactive({
   page: 1,
   pageSize: 10,
-  total: 0
+  total: 0,
 })
 
 // 搜索表单数据
@@ -148,38 +148,38 @@ const actionButtons = [
     code: 'edit',
     props: {
       type: 'primary',
-      size: 'small'
-    }
+      size: 'small',
+    },
   },
   {
     text: '启用',
     code: 'enable',
-    props: (row) => ({
+    props: row => ({
       type: row.status === 1 ? 'warning' : 'success',
-      size: 'small'
+      size: 'small',
     }),
-    show: (row) => row.status === 0
+    show: row => row.status === 0,
   },
   {
     text: '禁用',
     code: 'disable',
     props: {
       type: 'warning',
-      size: 'small'
+      size: 'small',
     },
-    show: (row) => row.status === 1
+    show: row => row.status === 1,
   },
   {
     text: '删除',
     code: 'delete',
     props: {
       type: 'danger',
-      size: 'small'
+      size: 'small',
     },
     confirm: {
-      message: (data) => `确定要删除用户 "${data.row.username}" 吗？此操作不可恢复！`
-    }
-  }
+      message: data => `确定要删除用户 "${data.row.username}" 吗？此操作不可恢复！`,
+    },
+  },
 ]
 
 // 处理操作按钮点击
@@ -204,38 +204,39 @@ const loadData = async (params = {}) => {
   try {
     // 模拟API调用
     await new Promise(resolve => setTimeout(resolve, 500))
-    
+
     // 合并搜索参数
     const searchParams = { ...searchForm.value, ...params }
-    
+
     // 模拟搜索过滤
     let filteredData = [...mockData]
     if (searchParams.username) {
-      filteredData = filteredData.filter(item => 
-        item.username.includes(searchParams.username) || 
-        item.nickname.includes(searchParams.username)
+      filteredData = filteredData.filter(
+        item =>
+          item.username.includes(searchParams.username) ||
+          item.nickname.includes(searchParams.username)
       )
     }
     if (searchParams.status !== '' && searchParams.status !== undefined) {
       filteredData = filteredData.filter(item => item.status === Number(searchParams.status))
     }
-    
+
     // 模拟分页
     const start = (pagination.page - 1) * pagination.pageSize
     const end = start + pagination.pageSize
-    
+
     tableData.value = filteredData.slice(start, end)
     pagination.total = filteredData.length
-    
+
     return {
       data: tableData.value,
-      total: filteredData.length
+      total: filteredData.length,
     }
   } catch (error) {
     ElMessage.error('获取用户列表失败')
     return {
       data: [],
-      total: 0
+      total: 0,
     }
   } finally {
     loading.value = false
@@ -243,7 +244,7 @@ const loadData = async (params = {}) => {
 }
 
 // 搜索
-const handleSearch = (values) => {
+const handleSearch = values => {
   searchForm.value = values
   pagination.page = 1
   loadData()
@@ -262,24 +263,20 @@ const handleAdd = () => {
 }
 
 // 编辑用户
-const handleEdit = (row) => {
+const handleEdit = row => {
   ElMessage.info(`编辑用户: ${row.username}`)
 }
 
 // 切换用户状态
-const handleToggleStatus = async (row) => {
+const handleToggleStatus = async row => {
   const action = row.status === 1 ? '禁用' : '启用'
   try {
-    await ElMessageBox.confirm(
-      `确定要${action}用户 "${row.username}" 吗？`,
-      '提示',
-      {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }
-    )
-    
+    await ElMessageBox.confirm(`确定要${action}用户 "${row.username}" 吗？`, '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    })
+
     // 模拟API调用
     row.status = row.status === 1 ? 0 : 1
     ElMessage.success(`${action}成功`)
@@ -290,18 +287,14 @@ const handleToggleStatus = async (row) => {
 }
 
 // 删除用户
-const handleDelete = async (row) => {
+const handleDelete = async row => {
   try {
-    await ElMessageBox.confirm(
-      `确定要删除用户 "${row.username}" 吗？此操作不可恢复！`,
-      '警告',
-      {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'error'
-      }
-    )
-    
+    await ElMessageBox.confirm(`确定要删除用户 "${row.username}" 吗？此操作不可恢复！`, '警告', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'error',
+    })
+
     // 模拟API调用
     const index = tableData.value.findIndex(item => item.id === row.id)
     if (index > -1) {
@@ -334,7 +327,7 @@ const handleBatchDelete = async () => {
     ElMessage.warning('请选择要删除的用户')
     return
   }
-  
+
   try {
     await ElMessageBox.confirm(
       `确定要删除选中的 ${selectedRows.value.length} 个用户吗？此操作不可恢复！`,
@@ -342,10 +335,10 @@ const handleBatchDelete = async () => {
       {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'error'
+        type: 'error',
       }
     )
-    
+
     // 模拟API调用
     selectedRows.value = []
     ElMessage.success('批量删除成功')
@@ -378,7 +371,7 @@ onMounted(() => {
         @reset="handleReset"
       />
     </el-card>
-    
+
     <!-- 数据表格 -->
     <ProTable
       v-loading="loading"
@@ -389,7 +382,7 @@ onMounted(() => {
       :has-toolbar="true"
       :action-bar="{
         buttons: actionButtons,
-        type: 'button'
+        type: 'button',
       }"
       stripe
       @page-change="handlePaginationChange"
@@ -401,7 +394,12 @@ onMounted(() => {
           <Icon icon="mdi:plus" width="16" />
           新增用户
         </el-button>
-        <el-button type="danger" size="small" :disabled="!selectedRows.length" @click="handleBatchDelete">
+        <el-button
+          type="danger"
+          size="small"
+          :disabled="!selectedRows.length"
+          @click="handleBatchDelete"
+        >
           <Icon icon="mdi:delete" width="16" />
           批量删除
         </el-button>

@@ -122,7 +122,7 @@ const removeExpired = (storage = localStorage) => {
   let count = 0
   const keys = Object.keys(storage)
 
-  keys.forEach((key) => {
+  keys.forEach(key => {
     try {
       const data = JSON.parse(storage.getItem(key))
       if (data.expire && data.expire < Date.now()) {
@@ -154,4 +154,3 @@ export const storageUtils = {
 }
 
 export default storageUtils
-

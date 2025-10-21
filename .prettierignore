@@ -1,0 +1,11 @@
+dist
+node_modules
+*.lock
+pnpm-lock.yaml
+.local
+.output
+coverage
+public
+.husky
+.vscode
+

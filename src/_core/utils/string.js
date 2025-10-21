@@ -3,7 +3,7 @@
  * @param {string} str - 输入字符串
  * @returns {string} 首字母大写的字符串
  */
-const capitalize = (str) => {
+const capitalize = str => {
   if (!str || typeof str !== 'string') return ''
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
@@ -17,7 +17,7 @@ const capitalize = (str) => {
 const toCamelCase = (str, separator = '-') => {
   if (!str || typeof str !== 'string') return ''
   return str.replace(new RegExp(`${separator}([a-z])`, 'g'), (match, letter) =>
-    letter.toUpperCase(),
+    letter.toUpperCase()
   )
 }
 
@@ -53,7 +53,7 @@ const maskPhone = (phone, start = 3, end = 7, mask = '*') => {
  * @param {string} str - 输入字符串
  * @returns {string} 短横线命名字符串
  */
-const toKebabCase = (str) => {
+const toKebabCase = str => {
   if (!str || typeof str !== 'string') return ''
   return str
     .replace(/([a-z])([A-Z])/g, '$1-$2')
@@ -66,7 +66,7 @@ const toKebabCase = (str) => {
  * @param {string} str - 输入字符串
  * @returns {string} 下划线命名字符串
  */
-const toSnakeCase = (str) => {
+const toSnakeCase = str => {
   if (!str || typeof str !== 'string') return ''
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2')
@@ -84,7 +84,7 @@ const toPascalCase = (str, separator = '-') => {
   if (!str || typeof str !== 'string') return ''
   return str
     .split(separator)
-    .map((word) => capitalize(word))
+    .map(word => capitalize(word))
     .join('')
 }
 
@@ -113,7 +113,7 @@ const removeSpaces = (str, type = 'all') => {
  * @param {string} str - 输入字符串
  * @returns {string} 反转后的字符串
  */
-const reverse = (str) => {
+const reverse = str => {
   if (!str || typeof str !== 'string') return ''
   return str.split('').reverse().join('')
 }
@@ -124,7 +124,10 @@ const reverse = (str) => {
  * @param {string} chars - 字符集，默认包含字母和数字
  * @returns {string} 随机字符串
  */
-const randomString = (length, chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789') => {
+const randomString = (
+  length,
+  chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+) => {
   let result = ''
   for (let i = 0; i < length; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length))
@@ -212,4 +215,3 @@ export const stringUtils = {
 }
 
 export default stringUtils
-

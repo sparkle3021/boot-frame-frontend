@@ -23,7 +23,7 @@ const formatDate = (date, format = 'YYYY-MM-DD HH:mm:ss') => {
  * @param {Date|string|number} timestamp - 时间戳或日期
  * @returns {string} 相对时间描述
  */
-const getRelativeTime = (timestamp) => {
+const getRelativeTime = timestamp => {
   const now = new Date()
   const target = new Date(timestamp)
   const diffInSeconds = Math.floor((now - target) / 1000)
@@ -85,7 +85,7 @@ const addTime = (date, amount, unit = 'day') => {
  * @param {Date|string|number} date - 日期
  * @returns {boolean} 是否为今天
  */
-const isToday = (date) => {
+const isToday = date => {
   const target = new Date(date)
   const today = new Date()
   return (
@@ -100,7 +100,7 @@ const isToday = (date) => {
  * @param {Date|string|number} date - 日期
  * @returns {boolean} 是否为本周
  */
-const isThisWeek = (date) => {
+const isThisWeek = date => {
   const target = new Date(date)
   const today = new Date()
 
@@ -119,12 +119,10 @@ const isThisWeek = (date) => {
  * @param {Date|string|number} date - 日期
  * @returns {boolean} 是否为本月
  */
-const isThisMonth = (date) => {
+const isThisMonth = date => {
   const target = new Date(date)
   const today = new Date()
-  return (
-    target.getFullYear() === today.getFullYear() && target.getMonth() === today.getMonth()
-  )
+  return target.getFullYear() === today.getFullYear() && target.getMonth() === today.getMonth()
 }
 
 /**
@@ -132,7 +130,7 @@ const isThisMonth = (date) => {
  * @param {Date|string|number} date - 日期
  * @returns {boolean} 是否为工作日
  */
-const isWeekday = (date) => {
+const isWeekday = date => {
   const day = new Date(date).getDay()
   return day >= 1 && day <= 5
 }
@@ -142,7 +140,7 @@ const isWeekday = (date) => {
  * @param {Date|string|number} date - 日期
  * @returns {boolean} 是否为周末
  */
-const isWeekend = (date) => {
+const isWeekend = date => {
   const day = new Date(date).getDay()
   return day === 0 || day === 6
 }
@@ -203,7 +201,7 @@ const isSameDay = (date1, date2) => {
  * @param {Date|string|number} date - 日期
  * @returns {number} 季度（1-4）
  */
-const getQuarter = (date) => {
+const getQuarter = date => {
   const month = new Date(date).getMonth()
   return Math.floor(month / 3) + 1
 }
@@ -213,7 +211,7 @@ const getQuarter = (date) => {
  * @param {Date|string|number} date - 日期
  * @returns {number} 周数
  */
-const getWeekOfYear = (date) => {
+const getWeekOfYear = date => {
   const target = new Date(date)
   const startOfYear = new Date(target.getFullYear(), 0, 1)
   const diff = target - startOfYear
@@ -261,4 +259,3 @@ export const timeUtils = {
 }
 
 export default timeUtils
-

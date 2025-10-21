@@ -8,7 +8,7 @@ const moduleRoutes = loadModuleRoutes()
 const constantRoutes = [
   {
     path: '/',
-    redirect: '/dashboard'
+    redirect: '/dashboard',
   },
   // 错误页面
   {
@@ -17,8 +17,8 @@ const constantRoutes = [
     component: () => import('@/views/_core/error/403.vue'),
     meta: {
       title: '403 - 无权限',
-      hidden: true
-    }
+      hidden: true,
+    },
   },
   {
     path: '/404',
@@ -26,8 +26,8 @@ const constantRoutes = [
     component: () => import('@/views/_core/error/404.vue'),
     meta: {
       title: '404 - 页面不存在',
-      hidden: true
-    }
+      hidden: true,
+    },
   },
   {
     path: '/500',
@@ -35,17 +35,17 @@ const constantRoutes = [
     component: () => import('@/views/_core/error/500.vue'),
     meta: {
       title: '500 - 服务器错误',
-      hidden: true
-    }
+      hidden: true,
+    },
   },
   // 404 兜底路由
   {
     path: '/:pathMatch(.*)*',
     redirect: '/404',
     meta: {
-      hidden: true
-    }
-  }
+      hidden: true,
+    },
+  },
 ]
 
 // 合并所有路由
@@ -53,7 +53,7 @@ const routes = [...moduleRoutes, ...constantRoutes]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
 })
 
 // 导出模块路由供其他地方使用（如菜单生成）

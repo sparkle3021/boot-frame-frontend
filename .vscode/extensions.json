@@ -1,6 +1,8 @@
 {
   "recommendations": [
-    "Vue.volar",
-    "esbenp.prettier-vscode"
+    "vue.volar",
+    "esbenp.prettier-vscode",
+    "antfu.unocss",
+    "editorconfig.editorconfig"
   ]
 }

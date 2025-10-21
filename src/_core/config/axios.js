@@ -2,11 +2,19 @@ import Axios from 'axios'
 import { stringify } from 'qs'
 import { SYS_CONSTANTS } from '../common/constants'
 
-// 基础配置
+/**
+ * Axios 默认配置
+ * @description
+ * - baseURL: API 前缀由环境变量 VITE_API_PREFIX 控制
+ * - timeout: 请求超时时间
+ * - headers: 默认请求头
+ * - paramsSerializer: URL 参数序列化配置
+ */
 const defaultConfig = {
+  baseURL: import.meta.env.VITE_API_PREFIX,
   timeout: SYS_CONSTANTS.REQUEST_TIMEOUT,
   headers: {
-    'Content-Type': 'application/json;charset=utf-8',
+    'Content-Type': SYS_CONSTANTS.REQUEST_CONTENT_TYPE,
   },
   paramsSerializer: {
     serialize: stringify,
@@ -35,18 +43,18 @@ class HttpClient {
   initInterceptors(interceptors) {
     this.initRequestInterceptor(
       interceptors?.requestInterceptor,
-      interceptors?.requestErrorInterceptor,
+      interceptors?.requestErrorInterceptor
     )
     this.initResponseInterceptor(
       interceptors?.responseInterceptor,
-      interceptors?.responseErrorInterceptor,
+      interceptors?.responseErrorInterceptor
     )
   }
 
   /** 初始化请求拦截器 */
   initRequestInterceptor(customInterceptor, customErrorInterceptor) {
     // 默认请求拦截器
-    const defaultInterceptor = (config) => {
+    const defaultInterceptor = config => {
       // 添加token
       const token = localStorage.getItem(SYS_CONSTANTS.LOCAL_TOKEN_KEY)
       if (token) {
@@ -56,28 +64,28 @@ class HttpClient {
     }
 
     // 默认请求错误拦截器
-    const defaultErrorInterceptor = (error) => {
+    const defaultErrorInterceptor = error => {
       return Promise.reject(error)
     }
 
     // 优先使用自定义拦截器，否则使用默认拦截器
     this.requestInterceptorId = this.instance.interceptors.request.use(
       customInterceptor || defaultInterceptor,
-      customErrorInterceptor || defaultErrorInterceptor,
+      customErrorInterceptor || defaultErrorInterceptor
     )
   }
 
   /** 初始化响应拦截器 */
   initResponseInterceptor(customInterceptor, customErrorInterceptor) {
     // 默认响应拦截器
-    const defaultInterceptor = (response) => {
+    const defaultInterceptor = response => {
       const requestKey = this.getRequestKey(response.config)
       if (requestKey) this.abortControllers.delete(requestKey)
       return Promise.resolve(response.data)
     }
 
     // 默认响应错误拦截器
-    const defaultErrorInterceptor = (error) => {
+    const defaultErrorInterceptor = error => {
       if (error.config) {
         const requestKey = this.getRequestKey(error.config)
         if (requestKey) this.abortControllers.delete(requestKey)
@@ -118,7 +126,7 @@ class HttpClient {
     // 优先使用自定义拦截器，否则使用默认拦截器
     this.responseInterceptorId = this.instance.interceptors.response.use(
       customInterceptor || defaultInterceptor,
-      customErrorInterceptor || defaultErrorInterceptor,
+      customErrorInterceptor || defaultErrorInterceptor
     )
   }
 
@@ -219,7 +227,7 @@ class HttpClient {
    * @param {number} ms 毫秒数
    */
   sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
+    return new Promise(resolve => setTimeout(resolve, ms))
   }
 
   /**
@@ -233,7 +241,7 @@ class HttpClient {
     const { requestKey, retry, ...restConfig } = config || {}
 
     // 设置合理的默认重试条件
-    const defaultRetryCondition = (error) => {
+    const defaultRetryCondition = error => {
       // 默认只重试网络错误或5xx服务器错误
       return !error.response || (error.response.status >= 500 && error.response.status < 600)
     }

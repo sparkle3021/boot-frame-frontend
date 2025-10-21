@@ -10,7 +10,6 @@ export default {
     icon: 'mdi:view-dashboard',
     order: 1,
     hidden: false, // 是否在菜单中隐藏
-    affix: true // 是否固定在标签页
-  }
+    affix: true, // 是否固定在标签页
+  },
 }
-

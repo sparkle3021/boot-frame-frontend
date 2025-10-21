@@ -10,7 +10,17 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "format": "prettier --write src/"
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "prettier --write"
+    ],
+    "*.{css,scss,html,json,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@vueuse/core": "^13.9.0",
@@ -24,13 +34,20 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@iconify/json": "^2.2.390",
     "@iconify/vue": "^5.0.0",
+    "@unocss/preset-attributify": "^66.5.4",
+    "@unocss/preset-icons": "^66.5.4",
     "@vitejs/plugin-vue": "^6.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.5",
     "prettier": "3.6.2",
     "sass": "^1.93.2",
     "unocss": "^66.5.2",
     "vite": "^7.0.6",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue-devtools": "^8.0.0"
   }
 }

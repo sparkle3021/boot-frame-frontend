@@ -3,7 +3,7 @@
  * @param {string} filename - 文件名
  * @returns {string} 扩展名（不含点）
  */
-const getFileExtension = (filename) => {
+const getFileExtension = filename => {
   const lastDot = filename.lastIndexOf('.')
   return lastDot > 0 ? filename.substring(lastDot + 1).toLowerCase() : ''
 }
@@ -13,7 +13,7 @@ const getFileExtension = (filename) => {
  * @param {string} filename - 文件名
  * @returns {string} 文件名
  */
-const getFileName = (filename) => {
+const getFileName = filename => {
   const lastDot = filename.lastIndexOf('.')
   return lastDot > 0 ? filename.substring(0, lastDot) : filename
 }
@@ -23,7 +23,7 @@ const getFileName = (filename) => {
  * @param {string} filename - 文件名
  * @returns {string} 文件类型（image/video/audio/document/other）
  */
-const getFileType = (filename) => {
+const getFileType = filename => {
   const ext = getFileExtension(filename)
 
   const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg']
@@ -43,7 +43,7 @@ const getFileType = (filename) => {
  * @param {string} filename - 文件名
  * @returns {boolean} 是否为图片
  */
-const isImage = (filename) => {
+const isImage = filename => {
   return getFileType(filename) === 'image'
 }
 
@@ -52,7 +52,7 @@ const isImage = (filename) => {
  * @param {string} filename - 文件名
  * @returns {boolean} 是否为视频
  */
-const isVideo = (filename) => {
+const isVideo = filename => {
   return getFileType(filename) === 'video'
 }
 
@@ -61,7 +61,7 @@ const isVideo = (filename) => {
  * @param {string} filename - 文件名
  * @returns {boolean} 是否为音频
  */
-const isAudio = (filename) => {
+const isAudio = filename => {
   return getFileType(filename) === 'audio'
 }
 
@@ -96,8 +96,8 @@ const readFile = (file, readAs = 'text') => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
 
-    reader.onload = (e) => resolve(e.target.result)
-    reader.onerror = (e) => reject(e)
+    reader.onload = e => resolve(e.target.result)
+    reader.onerror = e => reject(e)
 
     switch (readAs) {
       case 'text':
@@ -123,7 +123,7 @@ const readFile = (file, readAs = 'text') => {
  * @param {File} file - 文件对象
  * @returns {Promise<string>} Base64 字符串
  */
-const fileToBase64 = (file) => {
+const fileToBase64 = file => {
   return readFile(file, 'dataURL')
 }
 
@@ -162,7 +162,7 @@ const compressImage = (file, options = {}) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
 
-    reader.onload = (e) => {
+    reader.onload = e => {
       const img = new Image()
 
       img.onload = () => {
@@ -185,7 +185,7 @@ const compressImage = (file, options = {}) => {
         canvas.height = height
         ctx.drawImage(img, 0, 0, width, height)
 
-        canvas.toBlob((blob) => resolve(blob), file.type, quality)
+        canvas.toBlob(blob => resolve(blob), file.type, quality)
       }
 
       img.onerror = reject
@@ -234,4 +234,3 @@ export const fileUtils = {
 }
 
 export default fileUtils
-

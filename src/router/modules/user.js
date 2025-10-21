@@ -9,7 +9,7 @@ export default {
     title: '用户管理',
     icon: 'mdi:account-group',
     order: 2,
-    hidden: false
+    hidden: false,
   },
   children: [
     {
@@ -19,8 +19,8 @@ export default {
       meta: {
         title: '用户列表',
         icon: 'mdi:account-multiple',
-        hidden: false
-      }
+        hidden: false,
+      },
     },
     {
       path: 'role',
@@ -29,9 +29,8 @@ export default {
       meta: {
         title: '角色管理',
         icon: 'mdi:account-key',
-        hidden: false
-      }
-    }
-  ]
+        hidden: false,
+      },
+    },
+  ],
 }
-

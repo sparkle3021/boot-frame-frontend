@@ -36,7 +36,7 @@ const clamp = (value, min, max) => {
  * @param {Array<number>} numbers - 数字数组
  * @returns {number} 总和
  */
-const sum = (numbers) => {
+const sum = numbers => {
   return numbers.reduce((acc, num) => acc + num, 0)
 }
 
@@ -45,7 +45,7 @@ const sum = (numbers) => {
  * @param {Array<number>} numbers - 数字数组
  * @returns {number} 平均值
  */
-const average = (numbers) => {
+const average = numbers => {
   return numbers.length > 0 ? sum(numbers) / numbers.length : 0
 }
 
@@ -54,7 +54,7 @@ const average = (numbers) => {
  * @param {Array<number>} numbers - 数字数组
  * @returns {number} 最大值
  */
-const max = (numbers) => {
+const max = numbers => {
   return Math.max(...numbers)
 }
 
@@ -63,7 +63,7 @@ const max = (numbers) => {
  * @param {Array<number>} numbers - 数字数组
  * @returns {number} 最小值
  */
-const min = (numbers) => {
+const min = numbers => {
   return Math.min(...numbers)
 }
 
@@ -133,4 +133,3 @@ export const mathUtils = {
 }
 
 export default mathUtils
-

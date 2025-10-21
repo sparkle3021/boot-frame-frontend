@@ -13,7 +13,7 @@ const useClipboardWrapper = () => {
  * @param {string} text - 要复制的文本
  * @returns {Promise<boolean>} 是否复制成功
  */
-const copyToClipboard = async (text) => {
+const copyToClipboard = async text => {
   const { copy, isSupported } = useClipboard()
   if (!isSupported) {
     console.error('Clipboard API is not supported')
@@ -123,7 +123,8 @@ const scrollTo = (top, duration = 300) => {
     const progress = Math.min(elapsed / duration, 1)
 
     // 缓动函数
-    const easeProgress = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2
+    const easeProgress =
+      progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2
 
     window.scrollTo(0, start + distance * easeProgress)
 
@@ -206,4 +207,3 @@ export const browserUtils = {
 }
 
 export default browserUtils
-

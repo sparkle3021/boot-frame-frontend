@@ -59,7 +59,7 @@ const setStyle = (element, property, value) => {
   if (!element) return
 
   if (typeof property === 'object') {
-    Object.keys(property).forEach((key) => {
+    Object.keys(property).forEach(key => {
       element.style[key] = property[key]
     })
   } else {
@@ -72,7 +72,7 @@ const setStyle = (element, property, value) => {
  * @param {Element} element - DOM 元素
  * @returns {Object} 位置对象 {top, left, right, bottom, width, height}
  */
-const getOffset = (element) => {
+const getOffset = element => {
   if (!element) return null
 
   const rect = element.getBoundingClientRect()
@@ -91,7 +91,7 @@ const getOffset = (element) => {
  * @param {Element} element - DOM 元素
  * @returns {boolean} 是否在视口内
  */
-const isInViewport = (element) => {
+const isInViewport = element => {
   if (!element) return false
 
   const rect = element.getBoundingClientRect()
@@ -119,10 +119,10 @@ const closest = (element, selector) => {
  * @param {Element} element - DOM 元素
  * @returns {Array} 兄弟元素数组
  */
-const siblings = (element) => {
+const siblings = element => {
   if (!element || !element.parentNode) return []
 
-  return Array.from(element.parentNode.children).filter((child) => child !== element)
+  return Array.from(element.parentNode.children).filter(child => child !== element)
 }
 
 /**
@@ -166,4 +166,3 @@ export const domUtils = {
 }
 
 export default domUtils
-

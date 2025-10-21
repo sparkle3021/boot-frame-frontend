@@ -7,7 +7,7 @@
 
 defineOptions({
   name: 'ProTable',
-  inheritAttrs: false
+  inheritAttrs: false,
 })
 
 // Card 相关的 props
@@ -15,28 +15,23 @@ defineProps({
   // Card 阴影显示方式
   cardShadow: {
     type: String,
-    default: 'never'
+    default: 'never',
   },
   // Card body 的自定义样式
   cardBodyStyle: {
     type: Object,
-    default: () => ({})
+    default: () => ({}),
   },
   // 是否显示 Card 包裹，设置为 false 时等同于直接使用 PlusTable
   showCard: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 })
 </script>
 
 <template>
-  <el-card
-    v-if="showCard"
-    :shadow="cardShadow"
-    :body-style="cardBodyStyle"
-    class="pro-table-card"
-  >
+  <el-card v-if="showCard" :shadow="cardShadow" :body-style="cardBodyStyle" class="pro-table-card">
     <PlusTable v-bind="$attrs">
       <slot />
     </PlusTable>

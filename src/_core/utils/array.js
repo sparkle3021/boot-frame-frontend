@@ -10,7 +10,7 @@ const unique = (arr, key) => {
   }
 
   const seen = new Set()
-  return arr.filter((item) => {
+  return arr.filter(item => {
     const keyValue = typeof key === 'function' ? key(item) : item[key]
     if (seen.has(keyValue)) {
       return false
@@ -49,7 +49,7 @@ const chunk = (arr, size) => {
  * @param {Array} arr - 数组
  * @returns {Array} 乱序后的数组（新数组）
  */
-const shuffle = (arr) => {
+const shuffle = arr => {
   const result = [...arr]
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
@@ -99,7 +99,7 @@ const groupBy = (arr, key) => {
  */
 const sortBy = (arr, key, order = 'asc') => {
   const result = [...arr]
-  const getValue = typeof key === 'function' ? key : (item) => item[key]
+  const getValue = typeof key === 'function' ? key : item => item[key]
 
   return result.sort((a, b) => {
     const aVal = getValue(a)
@@ -118,7 +118,7 @@ const sortBy = (arr, key, order = 'asc') => {
  * @returns {Array} arr1 中有但 arr2 中没有的元素
  */
 const difference = (arr1, arr2) => {
-  return arr1.filter((item) => !arr2.includes(item))
+  return arr1.filter(item => !arr2.includes(item))
 }
 
 /**
@@ -128,7 +128,7 @@ const difference = (arr1, arr2) => {
  * @returns {Array} 两个数组的交集
  */
 const intersection = (arr1, arr2) => {
-  return arr1.filter((item) => arr2.includes(item))
+  return arr1.filter(item => arr2.includes(item))
 }
 
 /**
@@ -151,7 +151,7 @@ const partition = (arr, predicate) => {
   const pass = []
   const fail = []
 
-  arr.forEach((item) => {
+  arr.forEach(item => {
     if (predicate(item)) {
       pass.push(item)
     } else {
@@ -167,7 +167,7 @@ const partition = (arr, predicate) => {
  * @param {Array} arr - 数组
  * @returns {Array} 移除假值后的数组
  */
-const compact = (arr) => {
+const compact = arr => {
   return arr.filter(Boolean)
 }
 
@@ -183,18 +183,18 @@ const compact = (arr) => {
  */
 const toTree = (
   list,
-  { idKey = 'id', parentKey = 'parentId', childrenKey = 'children', rootValue = null } = {},
+  { idKey = 'id', parentKey = 'parentId', childrenKey = 'children', rootValue = null } = {}
 ) => {
   const map = new Map()
   const tree = []
 
   // 先建立映射
-  list.forEach((item) => {
+  list.forEach(item => {
     map.set(item[idKey], { ...item, [childrenKey]: [] })
   })
 
   // 构建树形结构
-  map.forEach((item) => {
+  map.forEach(item => {
     const parent = map.get(item[parentKey])
     if (parent) {
       parent[childrenKey].push(item)
@@ -239,8 +239,8 @@ const findTree = (tree, predicate, childrenKey = 'children') => {
 const flattenTree = (tree, childrenKey = 'children') => {
   const result = []
 
-  const flatten = (nodes) => {
-    nodes.forEach((node) => {
+  const flatten = nodes => {
+    nodes.forEach(node => {
       const { [childrenKey]: children, ...rest } = node
       result.push(rest)
 
@@ -276,4 +276,3 @@ export const arrayUtils = {
 }
 
 export default arrayUtils
-

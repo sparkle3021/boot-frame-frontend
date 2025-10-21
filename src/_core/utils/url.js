@@ -3,7 +3,7 @@
  * @param {string} url - URL 字符串
  * @returns {Object} 解析后的 URL 对象
  */
-const parseUrl = (url) => {
+const parseUrl = url => {
   try {
     const urlObj = new URL(url)
     return {
@@ -29,7 +29,7 @@ const parseUrl = (url) => {
  * @param {Object} options - URL 配置
  * @returns {string} 构建的 URL
  */
-const stringifyUrl = (options) => {
+const stringifyUrl = options => {
   const { protocol = 'https', host, pathname = '', params = {}, hash = '' } = options
 
   let url = `${protocol}://${host}${pathname}`
@@ -51,7 +51,7 @@ const stringifyUrl = (options) => {
  * @param {string} url - URL 字符串，默认为当前页面 URL
  * @returns {Object} 查询参数对象
  */
-const getQueryParams = (url) => {
+const getQueryParams = url => {
   const urlStr = url || window.location.href
   const searchParams = new URL(urlStr).searchParams
   const params = {}
@@ -83,7 +83,7 @@ const getQueryParam = (key, url) => {
 const addQueryParams = (url, params) => {
   const urlObj = new URL(url)
 
-  Object.keys(params).forEach((key) => {
+  Object.keys(params).forEach(key => {
     urlObj.searchParams.set(key, params[key])
   })
 
@@ -100,7 +100,7 @@ const removeQueryParams = (url, keys) => {
   const urlObj = new URL(url)
   const keyArray = Array.isArray(keys) ? keys : [keys]
 
-  keyArray.forEach((key) => {
+  keyArray.forEach(key => {
     urlObj.searchParams.delete(key)
   })
 
@@ -122,14 +122,14 @@ const updateQueryParams = (url, params) => {
  * @param {string} url - URL 字符串，默认为当前页面 URL
  * @returns {Object} Hash 参数对象
  */
-const getHashParams = (url) => {
+const getHashParams = url => {
   const urlStr = url || window.location.href
   const hash = new URL(urlStr).hash.substring(1)
 
   if (!hash) return {}
 
   const params = {}
-  hash.split('&').forEach((pair) => {
+  hash.split('&').forEach(pair => {
     const [key, value] = pair.split('=')
     if (key) {
       params[decodeURIComponent(key)] = decodeURIComponent(value || '')
@@ -144,7 +144,7 @@ const getHashParams = (url) => {
  * @param {string} path - 路径
  * @returns {boolean} 是否为绝对路径
  */
-const isAbsoluteUrl = (path) => {
+const isAbsoluteUrl = path => {
   return /^https?:\/\//i.test(path)
 }
 
@@ -161,7 +161,7 @@ const joinUrl = (...paths) => {
       }
       return path.replace(/^\/+|\/+$/g, '')
     })
-    .filter((path) => path)
+    .filter(path => path)
     .join('/')
 }
 
@@ -201,4 +201,3 @@ export const urlUtils = {
 }
 
 export default urlUtils
-

@@ -45,17 +45,17 @@ export function useTable(apiFn, initialParams = {}, options = {}) {
   //=== 监听响应数据变化，更新表格数据
   watch(
     responseData,
-    (newData) => {
+    newData => {
       if (newData) {
         data.value = newData.records || []
         pagination.total = newData.total || 0
       }
     },
-    { immediate: true },
+    { immediate: true }
   )
 
   //=== 搜索
-  const handleSearch = (searchParams) => {
+  const handleSearch = searchParams => {
     params.value = { ...searchParams }
     pagination.currentPage = 1 // 重置到第一页
     loadData()

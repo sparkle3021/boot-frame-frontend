@@ -11,7 +11,7 @@ const routerStore = useRouterStore()
 
 const menuList = computed(() => routerStore.menus)
 
-const handleMenuSelect = (path) => {
+const handleMenuSelect = path => {
   router.push(path)
 }
 

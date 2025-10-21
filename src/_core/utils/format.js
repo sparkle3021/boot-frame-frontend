@@ -93,7 +93,7 @@ const formatBankCard = (cardNumber, separator = ' ') => {
  * @param {string} formattedNumber - 格式化后的数字
  * @returns {number} 原始数字
  */
-const parseNumber = (formattedNumber) => {
+const parseNumber = formattedNumber => {
   const cleaned = String(formattedNumber).replace(/[,\s¥$€£]/g, '')
   return Number(cleaned)
 }
@@ -103,7 +103,7 @@ const parseNumber = (formattedNumber) => {
  * @param {number} num - 数字（0-9999）
  * @returns {string} 中文数字
  */
-const toChineseNumber = (num) => {
+const toChineseNumber = num => {
   const digits = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
   const units = ['', '十', '百', '千']
 
@@ -138,7 +138,7 @@ const toChineseNumber = (num) => {
  * @param {number} amount - 金额
  * @returns {string} 中文金额大写
  */
-const toChineseMoney = (amount) => {
+const toChineseMoney = amount => {
   const digits = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
   const units = ['', '拾', '佰', '仟']
   const bigUnits = ['', '万', '亿']
@@ -210,4 +210,3 @@ export const formatUtils = {
 }
 
 export default formatUtils
-

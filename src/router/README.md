@@ -51,7 +51,7 @@ export default {
     title: '商品管理',
     icon: 'mdi:package-variant',
     order: 6, // 菜单排序，数字越小越靠前
-    hidden: false // 是否在菜单中隐藏
+    hidden: false, // 是否在菜单中隐藏
   },
   children: [
     {
@@ -61,8 +61,8 @@ export default {
       meta: {
         title: '商品列表',
         icon: 'mdi:format-list-bulleted',
-        hidden: false
-      }
+        hidden: false,
+      },
     },
     {
       path: 'category',
@@ -71,10 +71,10 @@ export default {
       meta: {
         title: '商品分类',
         icon: 'mdi:shape',
-        hidden: false
-      }
-    }
-  ]
+        hidden: false,
+      },
+    },
+  ],
 }
 ```
 
@@ -90,15 +90,15 @@ export default {
 
 路由的 `meta` 字段支持以下配置：
 
-| 属性 | 类型 | 说明 | 默认值 |
-|-----|------|------|--------|
-| title | String | 菜单标题 | - |
-| icon | String | 菜单图标（使用 iconify 图标） | - |
-| order | Number | 菜单排序（数字越小越靠前） | 999 |
-| hidden | Boolean | 是否在菜单中隐藏 | false |
-| affix | Boolean | 是否固定在标签页 | false |
-| permissions | Array | 所需权限列表 | - |
-| roles | Array | 所需角色列表 | - |
+| 属性        | 类型    | 说明                          | 默认值 |
+| ----------- | ------- | ----------------------------- | ------ |
+| title       | String  | 菜单标题                      | -      |
+| icon        | String  | 菜单图标（使用 iconify 图标） | -      |
+| order       | Number  | 菜单排序（数字越小越靠前）    | 999    |
+| hidden      | Boolean | 是否在菜单中隐藏              | false  |
+| affix       | Boolean | 是否固定在标签页              | false  |
+| permissions | Array   | 所需权限列表                  | -      |
+| roles       | Array   | 所需角色列表                  | -      |
 
 ### 示例
 
@@ -144,8 +144,8 @@ routerStore.addDynamicRoutes([
     path: '/custom',
     name: 'Custom',
     component: () => import('@/views/custom/index.vue'),
-    meta: { title: '自定义页面', icon: 'mdi:star' }
-  }
+    meta: { title: '自定义页面', icon: 'mdi:star' },
+  },
 ])
 
 // 重置路由（清除动态路由）
@@ -181,7 +181,7 @@ const menus = generateMenuFromRoutes(routes)
 ```javascript
 import { filterRoutes } from '@/router/utils'
 
-const filteredRoutes = filterRoutes(routes, (route) => {
+const filteredRoutes = filterRoutes(routes, route => {
   return !route.meta?.hidden
 })
 ```
@@ -279,9 +279,9 @@ const dynamicRoutes = [
     component: () => import('@/views/custom/index.vue'),
     meta: {
       title: '自定义模块',
-      icon: 'mdi:star'
-    }
-  }
+      icon: 'mdi:star',
+    },
+  },
 ]
 
 // 添加到 store

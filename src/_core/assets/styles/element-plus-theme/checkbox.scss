@@ -19,10 +19,7 @@ body .el-checkbox {
     background: eleVar('checkbox', 'bg');
     border: eleVar('checkbox', 'border');
     border-radius: eleVar('checkbox', 'radius');
-    transition: (
-      border-color $transition-base,
-      background-color $transition-base
-    );
+    transition: (border-color $transition-base, background-color $transition-base);
 
     &::after {
       top: 50%;

@@ -1,6 +1,6 @@
 /**
  * 通用工具函数统一导出入口
- * 
+ *
  * 该文件聚合所有工具模块，提供统一的导出接口
  * 各个功能模块已拆分至独立文件：
  * - time.js: 时间处理工具
@@ -264,26 +264,9 @@ export const {
 } = domUtils
 
 // 颜色处理
-export const {
-  hexToRgb,
-  rgbToHex,
-  hexToRgba,
-  lighten,
-  darken,
-  randomColor,
-  isValidColor,
-} = colorUtils
+export const { hexToRgb, rgbToHex, hexToRgba, lighten, darken, randomColor, isValidColor } =
+  colorUtils
 
 // 数学计算
-export const {
-  random,
-  randomInt,
-  clamp,
-  sum,
-  average,
-  max,
-  min,
-  round,
-  toFixed,
-  percentage,
-} = mathUtils
+export const { random, randomInt, clamp, sum, average, max, min, round, toFixed, percentage } =
+  mathUtils

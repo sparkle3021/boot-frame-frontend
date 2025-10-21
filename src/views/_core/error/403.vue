@@ -1,16 +1,16 @@
 <script setup>
-import { ElButton } from 'element-plus';
-import { useRouter } from 'vue-router';
+import { ElButton } from 'element-plus'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
 const goHome = () => {
-  router.push('/');
-};
+  router.push('/')
+}
 
 const goBack = () => {
-  router.go(-1);
-};
+  router.go(-1)
+}
 </script>
 
 <template>
@@ -257,8 +257,8 @@ const goBack = () => {
     <div class="mt-4 text-gray-500">抱歉，您无权访问此页面。</div>
 
     <div class="mt-6">
-      <el-button type="primary" @click="goHome"> 返回首页 </el-button>
-      <el-button @click="goBack"> 返回上页 </el-button>
+      <el-button type="primary" @click="goHome">返回首页</el-button>
+      <el-button @click="goBack">返回上页</el-button>
     </div>
   </div>
 </template>

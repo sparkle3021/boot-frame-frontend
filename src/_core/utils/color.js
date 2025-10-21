@@ -3,7 +3,7 @@
  * @param {string} hex - HEX 颜色值
  * @returns {Object} RGB 对象 {r, g, b}
  */
-const hexToRgb = (hex) => {
+const hexToRgb = hex => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result
     ? {
@@ -46,7 +46,7 @@ const lighten = (hex, amount) => {
   const rgb = hexToRgb(hex)
   if (!rgb) return hex
 
-  const increase = (value) => Math.min(255, Math.round(value + (255 - value) * amount))
+  const increase = value => Math.min(255, Math.round(value + (255 - value) * amount))
 
   return rgbToHex(increase(rgb.r), increase(rgb.g), increase(rgb.b))
 }
@@ -61,7 +61,7 @@ const darken = (hex, amount) => {
   const rgb = hexToRgb(hex)
   if (!rgb) return hex
 
-  const decrease = (value) => Math.max(0, Math.round(value * (1 - amount)))
+  const decrease = value => Math.max(0, Math.round(value * (1 - amount)))
 
   return rgbToHex(decrease(rgb.r), decrease(rgb.g), decrease(rgb.b))
 }
@@ -84,7 +84,7 @@ const randomColor = (format = 'hex') => {
  * @param {string} color - 颜色值
  * @returns {boolean} 是否为有效颜色
  */
-const isValidColor = (color) => {
+const isValidColor = color => {
   const hexPattern = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
   const rgbPattern = /^rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)$/
   const rgbaPattern = /^rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*[\d.]+\s*\)$/
@@ -106,4 +106,3 @@ export const colorUtils = {
 }
 
 export default colorUtils
-

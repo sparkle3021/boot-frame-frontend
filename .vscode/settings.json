@@ -1,10 +1,20 @@
 {
-  "prettier.configPath": ".prettierrc.json",
-  "path-intellisense.mappings": {
-    "@": "${workspaceRoot}/src"
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
   },
-  "path-intellisense.autoSlashAfterDirectory": true,
-  "path-intellisense.extensionOnImport": true,
-  "path-intellisense.showHiddenFiles": true,
-  "livePreview.defaultPreviewPath": "/dist/index.html"
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.eol": "\n",
+  "files.associations": {
+    "*.css": "css"
+  }
 }

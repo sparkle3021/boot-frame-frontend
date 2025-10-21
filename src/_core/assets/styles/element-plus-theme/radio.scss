@@ -18,10 +18,7 @@ body .el-radio {
     background: eleVar('radio', 'bg');
     border: eleVar('radio', 'border');
     border-radius: eleVar('radio', 'radius');
-    transition: (
-      border-color $transition-base,
-      background-color $transition-base
-    );
+    transition: (border-color $transition-base, background-color $transition-base);
 
     &::after {
       $size: eleVar('radio', 'dot-size');

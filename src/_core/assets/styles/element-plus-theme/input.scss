@@ -429,9 +429,7 @@ body .el-input-number .el-input .el-input__wrapper {
   padding-top: 0;
   padding-bottom: 0;
   padding-left: eleVar('input', 'padding-left');
-  padding-right: calc(
-    #{elVar('component-size')} + #{eleVar('input', 'icon-space')}
-  );
+  padding-right: calc(#{elVar('component-size')} + #{eleVar('input', 'icon-space')});
 }
 
 .el-input-number.el-input-number--small {
@@ -442,9 +440,7 @@ body .el-input-number .el-input .el-input__wrapper {
 
   .el-input .el-input__wrapper {
     padding-left: eleVar('input-sm', 'padding-left');
-    padding-right: calc(
-      #{elVar('component-size', 'small')} + #{eleVar('input', 'icon-space')}
-    );
+    padding-right: calc(#{elVar('component-size', 'small')} + #{eleVar('input', 'icon-space')});
   }
 }
 
@@ -456,28 +452,20 @@ body .el-input-number .el-input .el-input__wrapper {
 
   .el-input .el-input__wrapper {
     padding-left: eleVar('input-lg', 'padding-left');
-    padding-right: calc(
-      #{elVar('component-size', 'large')} + #{eleVar('input', 'icon-space')}
-    );
+    padding-right: calc(#{elVar('component-size', 'large')} + #{eleVar('input', 'icon-space')});
   }
 }
 
 .el-input-number:not(.is-controls-right) .el-input .el-input__wrapper {
-  padding-left: calc(
-    #{elVar('component-size')} + #{eleVar('input', 'icon-space')}
-  );
+  padding-left: calc(#{elVar('component-size')} + #{eleVar('input', 'icon-space')});
 }
 
 .el-input-number--small:not(.is-controls-right) .el-input .el-input__wrapper {
-  padding-left: calc(
-    #{elVar('component-size', 'small')} + #{eleVar('input', 'icon-space')}
-  );
+  padding-left: calc(#{elVar('component-size', 'small')} + #{eleVar('input', 'icon-space')});
 }
 
 .el-input-number--large:not(.is-controls-right) .el-input .el-input__wrapper {
-  padding-left: calc(
-    #{elVar('component-size', 'large')} + #{eleVar('input', 'icon-space')}
-  );
+  padding-left: calc(#{elVar('component-size', 'large')} + #{eleVar('input', 'icon-space')});
 }
 
 body .el-input-number.is-disabled .el-input-number__increase,

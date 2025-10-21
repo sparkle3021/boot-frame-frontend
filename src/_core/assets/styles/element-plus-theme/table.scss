@@ -18,24 +18,16 @@ body div.el-table {
 @mixin data-table-radius($radius) {
   & > .el-table__inner-wrapper > .el-table__header-wrapper,
   &.el-table--border > .el-table__inner-wrapper::after,
-  &.el-table--border.hide-header
-    > .el-table__inner-wrapper
-    > .el-table__body-wrapper,
-  &.el-table--layout-auto:not(.hide-header)
-    > .el-table__inner-wrapper
-    > .el-table__body-wrapper {
+  &.el-table--border.hide-header > .el-table__inner-wrapper > .el-table__body-wrapper,
+  &.el-table--layout-auto:not(.hide-header) > .el-table__inner-wrapper > .el-table__body-wrapper {
     border-top-left-radius: $radius;
     border-top-right-radius: $radius;
   }
 
   & > .el-table__inner-wrapper > .el-table__footer-wrapper,
   &.el-table--border > .el-table__inner-wrapper::before,
-  &.el-table--border:not(.has-footer)
-    > .el-table__inner-wrapper
-    > .el-table__body-wrapper,
-  &.el-table--layout-auto.has-footer
-    > .el-table__inner-wrapper
-    > .el-table__body-wrapper {
+  &.el-table--border:not(.has-footer) > .el-table__inner-wrapper > .el-table__body-wrapper,
+  &.el-table--layout-auto.has-footer > .el-table__inner-wrapper > .el-table__body-wrapper {
     border-bottom-left-radius: $radius;
     border-bottom-right-radius: $radius;
   }

@@ -13,7 +13,7 @@ $ele: map.deep-merge(
   (
     'card': (
       'bg': elVar('bg-color'),
-      'shadow': elVar('box-shadow', 'lighter')
+      'shadow': elVar('box-shadow', 'lighter'),
     ),
     'popper': (
       'bg': elVar('bg-color', 'overlay'),
@@ -23,7 +23,7 @@ $ele: map.deep-merge(
       'arrow-bg': eleVar('popper', 'bg'),
       'arrow-size': 8px,
       'arrow-offset': -4px,
-      'arrow-shadow': 0 0 8px 0 rgba(0, 0, 0, 0.06)
+      'arrow-shadow': 0 0 8px 0 rgba(0, 0, 0, 0.06),
     ),
     'tooltip': (
       'color': #fff,
@@ -35,7 +35,7 @@ $ele: map.deep-merge(
       'radius': elVar('border-radius', 'base'),
       'shadow': 0 0 8px 0 rgba(0, 0, 0, 0.06),
       'arrow-bg': eleVar('tooltip', 'bg'),
-      'arrow-shadow': 0 0 8px 0 rgba(0, 0, 0, 0.06)
+      'arrow-shadow': 0 0 8px 0 rgba(0, 0, 0, 0.06),
     ),
     'tooltip-light': (
       'color': elVar('text-color', 'primary'),
@@ -43,7 +43,7 @@ $ele: map.deep-merge(
       'border': none,
       'shadow': eleVar('popper', 'shadow'),
       'arrow-bg': eleVar('tooltip-light', 'bg'),
-      'arrow-shadow': eleVar('popper', 'arrow-shadow')
+      'arrow-shadow': eleVar('popper', 'arrow-shadow'),
     ),
     'popover': (
       'color': elVar('text-color', 'regular'),
@@ -53,7 +53,7 @@ $ele: map.deep-merge(
       'title-font-size': elVar('font-size', 'base'),
       'title-font-weight': bold,
       'title-padding': 13px 16px 0 16px,
-      'title-border': none
+      'title-border': none,
     ),
     'select': (
       'padding': 6px 4px,
@@ -65,14 +65,14 @@ $ele: map.deep-merge(
       'item-active-hover-bg': elVar('color-primary', 'light-8'),
       'item-active-font-weight': bold,
       'icon-size': 16px,
-      'icon-margin': 0 -4px 0 4px
+      'icon-margin': 0 -4px 0 4px,
     ),
     'autocomplete': (
       'padding': 6px 4px,
       'item-height': 32px,
       'item-margin': 2px,
       'item-padding': 0 12px,
-      'item-radius': elVar('border-radius', 'small')
+      'item-radius': elVar('border-radius', 'small'),
     ),
     'cascader': (
       'menu-padding': 6px,
@@ -82,7 +82,7 @@ $ele: map.deep-merge(
       'item-radius': elVar('border-radius', 'small'),
       'item-active-bg': elVar('color-primary', 'light-9'),
       'item-active-hover-bg': elVar('color-primary', 'light-8'),
-      'item-active-font-weight': bold
+      'item-active-font-weight': bold,
     ),
     'message-box': (
       'width': 380px,
@@ -104,7 +104,7 @@ $ele: map.deep-merge(
       'input-margin': 8px 0 6px 0,
       'footer-padding': 8px 20px 18px 20px,
       'footer-border': none,
-      'mobile-space': 16px
+      'mobile-space': 16px,
     ),
     'notification': (
       'width': 360px,
@@ -128,7 +128,7 @@ $ele: map.deep-merge(
       'close-font-size': 18px,
       'close-color': elVar('text-color', 'secondary'),
       'close-hover-color': elVar('text-color', 'primary'),
-      'close-hover-bg': elVar('fill-color', 'light')
+      'close-hover-bg': elVar('fill-color', 'light'),
     ),
     'radio': (
       'color': elVar('text-color', 'regular'),
@@ -158,7 +158,7 @@ $ele: map.deep-merge(
       'lg-size': 16px,
       'lg-radius': 50%,
       'lg-dot-size': 8px,
-      'lg-dot-radius': 50%
+      'lg-dot-radius': 50%,
     ),
     'checkbox': (
       'color': elVar('text-color', 'regular'),
@@ -187,7 +187,7 @@ $ele: map.deep-merge(
       'lg-radius': elVar('border-radius', 'small'),
       'lg-icon-width': 5.7142857142857135px,
       'lg-icon-height': 9.142857142857142px,
-      'lg-icon-left': 21.5%
+      'lg-icon-left': 21.5%,
     ),
     'tag': (
       'size': 13px,
@@ -304,7 +304,7 @@ $ele: map.deep-merge(
       'hit-info-border-color': elVar('color-info', 'light-3'),
       'hit-success-border-color': elVar('color-success'),
       'hit-warning-border-color': elVar('color-warning'),
-      'hit-danger-border-color': elVar('color-error')
+      'hit-danger-border-color': elVar('color-error'),
     ),
     'tree': (
       'item-height': 30px,
@@ -320,11 +320,11 @@ $ele: map.deep-merge(
       'expand-padding': 3px,
       'expand-margin': 0 2px 0 4px,
       'expand-radius': elVar('border-radius', 'small'),
-      'expand-hover-bg': hsla(0, 0%, 60%, 0.15)
+      'expand-hover-bg': hsla(0, 0%, 60%, 0.15),
     ),
     'tree-select': (
       'padding': 6px 4px,
-      'item-disabled-color': elVar('disabled', 'text-color')
+      'item-disabled-color': elVar('disabled', 'text-color'),
     ),
     'table': (
       'radius': elVar('border-radius', 'base'),
@@ -364,12 +364,12 @@ $ele: map.deep-merge(
       'sticky-top': 0,
       'fixed-header-sticky-top': 94px,
       'maximized-sticky-top': 40px,
-      'fix-height': 0.45px
+      'fix-height': 0.45px,
     ),
     'descriptions': (
       'radius': $radius-large,
       'border-color': elVar('border-color', 'light'),
-      'bg': elVar('fill-color', 'lighter')
+      'bg': elVar('fill-color', 'lighter'),
     ),
     'datepicker': (
       'header-height': 42px,
@@ -425,7 +425,7 @@ $ele: map.deep-merge(
       'shortcut-hover-color': elVar('text-color', 'primary'),
       'shortcut-hover-bg': elVar('fill-color', 'light'),
       'range-icon-color': elVar('text-color', 'placeholder'),
-      'range-icon-size': elVar('font-size', 'base')
+      'range-icon-size': elVar('font-size', 'base'),
     ),
     'timepicker': (
       'width': 180px,
@@ -455,7 +455,7 @@ $ele: map.deep-merge(
       'header-height': 42px,
       'header-border': 1px solid elVar('border-color', 'light'),
       'header-size': 14px,
-      'range-space': 6px
+      'range-space': 6px,
     ),
     'input': (
       'padding-left': 10px,
@@ -488,7 +488,7 @@ $ele: map.deep-merge(
       'extra-bg': elVar('fill-color', 'light'),
       'extra-padding': 0 10px,
       'extra-line-height': normal,
-      'extra-preset-margin': -1px -11px
+      'extra-preset-margin': -1px -11px,
     ),
     'input-error': (
       'bg': transparent,
@@ -501,15 +501,15 @@ $ele: map.deep-merge(
       'focus-shadow': 0 0 0 2px elVar('color-error', 'light-8'),
       'disabled-bg': elVar('disabled', 'bg-color'),
       'disabled-border': 1px solid elVar('disabled', 'border-color'),
-      'status-color': elVar('color-error')
+      'status-color': elVar('color-error'),
     ),
     'input-sm': (
       'padding-left': 8px,
-      'padding-right': 8px
+      'padding-right': 8px,
     ),
     'input-lg': (
       'padding-left': 12px,
-      'padding-right': 12px
+      'padding-right': 12px,
     ),
     'textarea': (
       'padding-top': 4px,
@@ -517,16 +517,16 @@ $ele: map.deep-merge(
       'count-bg': elVar('bg-color'),
       'count-padding': 0,
       'count-right': 12px,
-      'count-bottom': 6px
+      'count-bottom': 6px,
     ),
     'textarea-sm': (
       'padding-top': 2px,
-      'padding-bottom': 2px
+      'padding-bottom': 2px,
     ),
     'textarea-lg': (
       'padding-top': 8px,
-      'padding-bottom': 8px
-    )
+      'padding-bottom': 8px,
+    ),
   ),
   $ele
 );

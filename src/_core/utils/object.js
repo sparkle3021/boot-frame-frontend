@@ -3,7 +3,7 @@
  * @param {*} obj - 要拷贝的对象
  * @returns {*} 拷贝后的对象
  */
-const deepClone = (obj) => {
+const deepClone = obj => {
   if (obj === null || typeof obj !== 'object') return obj
 
   // 处理日期对象
@@ -14,12 +14,12 @@ const deepClone = (obj) => {
 
   // 处理数组
   if (Array.isArray(obj)) {
-    return obj.map((item) => deepClone(item))
+    return obj.map(item => deepClone(item))
   }
 
   // 处理普通对象
   const cloned = {}
-  Object.keys(obj).forEach((key) => {
+  Object.keys(obj).forEach(key => {
     cloned[key] = deepClone(obj[key])
   })
 
@@ -38,7 +38,7 @@ const deepMerge = (target, ...sources) => {
   const source = sources.shift()
 
   if (isObject(target) && isObject(source)) {
-    Object.keys(source).forEach((key) => {
+    Object.keys(source).forEach(key => {
       if (isObject(source[key])) {
         if (!target[key]) {
           target[key] = {}
@@ -58,7 +58,7 @@ const deepMerge = (target, ...sources) => {
  * @param {*} obj - 要判断的值
  * @returns {boolean} 是否为对象
  */
-const isObject = (obj) => {
+const isObject = obj => {
   return obj !== null && typeof obj === 'object' && !Array.isArray(obj)
 }
 
@@ -69,7 +69,7 @@ const isObject = (obj) => {
  * @returns {Object} 包含选取属性的新对象
  */
 const pick = (obj, keys) => {
-  const keyArray = Array.isArray(keys) ? keys : keys.split(',').map((k) => k.trim())
+  const keyArray = Array.isArray(keys) ? keys : keys.split(',').map(k => k.trim())
 
   return keyArray.reduce((result, key) => {
     if (obj.hasOwnProperty(key)) {
@@ -86,7 +86,7 @@ const pick = (obj, keys) => {
  * @returns {Object} 排除指定属性后的新对象
  */
 const omit = (obj, keys) => {
-  const keyArray = Array.isArray(keys) ? keys : keys.split(',').map((k) => k.trim())
+  const keyArray = Array.isArray(keys) ? keys : keys.split(',').map(k => k.trim())
 
   return Object.keys(obj).reduce((result, key) => {
     if (!keyArray.includes(key)) {
@@ -170,7 +170,7 @@ const flattenObject = (obj, separator = '.') => {
   const result = {}
 
   const flatten = (current, prefix = '') => {
-    Object.keys(current).forEach((key) => {
+    Object.keys(current).forEach(key => {
       const newKey = prefix ? `${prefix}${separator}${key}` : key
 
       if (isObject(current[key])) {
@@ -194,7 +194,7 @@ const flattenObject = (obj, separator = '.') => {
 const unflattenObject = (obj, separator = '.') => {
   const result = {}
 
-  Object.keys(obj).forEach((key) => {
+  Object.keys(obj).forEach(key => {
     set(result, key.split(separator).join('.'), obj[key])
   })
 
@@ -215,7 +215,7 @@ const diffObject = (obj1, obj2) => {
   }
 
   // 检查新增和更新
-  Object.keys(obj2).forEach((key) => {
+  Object.keys(obj2).forEach(key => {
     if (!obj1.hasOwnProperty(key)) {
       result.added[key] = obj2[key]
     } else if (obj1[key] !== obj2[key]) {
@@ -227,7 +227,7 @@ const diffObject = (obj1, obj2) => {
   })
 
   // 检查删除
-  Object.keys(obj1).forEach((key) => {
+  Object.keys(obj1).forEach(key => {
     if (!obj2.hasOwnProperty(key)) {
       result.deleted[key] = obj1[key]
     }
@@ -241,10 +241,10 @@ const diffObject = (obj1, obj2) => {
  * @param {Object} obj - 对象
  * @returns {Object} 冻结后的对象
  */
-const deepFreeze = (obj) => {
+const deepFreeze = obj => {
   Object.freeze(obj)
 
-  Object.keys(obj).forEach((key) => {
+  Object.keys(obj).forEach(key => {
     if (isObject(obj[key]) || Array.isArray(obj[key])) {
       deepFreeze(obj[key])
     }
@@ -272,4 +272,3 @@ export const objectUtils = {
 }
 
 export default objectUtils
-

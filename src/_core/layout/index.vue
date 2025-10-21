@@ -11,7 +11,7 @@ const layoutStore = useLayoutStore()
 const getOffsetStyle = () => {
   const sidebarWidth = layoutStore.getCurrentSidebarWidth()
   return {
-    paddingLeft: `${sidebarWidth}px`
+    paddingLeft: `${sidebarWidth}px`,
   }
 }
 
@@ -27,7 +27,7 @@ const bodyHeight = computed(() => {
 const sidebarStyle = computed(() => ({
   width: `${layoutStore.getCurrentSidebarWidth()}px`,
   top: headerHeight.value,
-  height: `calc(100vh - ${layoutStore.headerHeight}px)`
+  height: `calc(100vh - ${layoutStore.headerHeight}px)`,
 }))
 
 // 主内容样式
@@ -39,12 +39,12 @@ const mainStyle = computed(() => getOffsetStyle())
     <div class="layout-header">
       <AppHeader />
     </div>
-    
+
     <div class="layout-body" :style="{ marginTop: headerHeight, height: bodyHeight }">
       <div class="layout-sidebar" :style="sidebarStyle">
         <AppSidebar />
       </div>
-      
+
       <div class="layout-main" :style="mainStyle">
         <AppMain />
       </div>

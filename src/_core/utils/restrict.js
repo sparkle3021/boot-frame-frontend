@@ -31,4 +31,3 @@ export const restrictUtils = {
 }
 
 export default restrictUtils
-

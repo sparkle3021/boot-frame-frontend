@@ -1,7 +1,7 @@
 import { ElMessage } from 'element-plus'
 
 // 判断是否为函数
-const isFunction = (value) => typeof value === 'function'
+const isFunction = value => typeof value === 'function'
 const messageType = ['info', 'success', 'warning', 'error']
 
 function messageTypeProcess(type) {

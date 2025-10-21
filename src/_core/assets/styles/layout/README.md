@@ -15,6 +15,7 @@ src/_core/assets/styles/layout/
 ## 样式分区
 
 ### 1. 布局容器
+
 - `.app-layout` - 整体布局容器
 - `.layout-header` - 头部容器
 - `.layout-body` - 主体容器
@@ -23,6 +24,7 @@ src/_core/assets/styles/layout/
 - `.layout-footer` - 底部容器
 
 ### 2. 头部样式 (Header)
+
 - `.app-header` - 头部主容器
 - `.header-content` - 头部内容区
 - `.header-logo` - Logo区域
@@ -31,20 +33,24 @@ src/_core/assets/styles/layout/
 - `.user-dropdown` - 用户下拉菜单
 
 ### 3. 侧边栏样式 (Sidebar)
+
 - `.app-sidebar` - 侧边栏主容器
 - `.sidebar-scrollbar` - 菜单滚动区
 - `.menu-icon` - 菜单图标
 - `.sidebar-toggle` - 收缩按钮
 
 ### 4. 主内容区样式 (Main)
+
 - `.app-main` - 主内容区容器
 - `.main-content` - 内容包裹容器
 - `.fade-transform-*` - 页面切换动画
 
 ### 5. 底部样式 (Footer)
+
 - `.app-footer` - 底部主容器
 
 ### 6. 响应式设计
+
 - 针对小屏幕（≤768px）的响应式样式
 
 ## 使用方式
@@ -98,4 +104,3 @@ import '@/_core/assets/styles/layout/index.scss'
 ## 维护记录
 
 - **v1.0.0** (2024) - 初始版本，整合所有布局样式
-

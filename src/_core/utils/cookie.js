@@ -23,14 +23,7 @@ const useCookieWrapper = (name, options = {}) => {
  * @param {string} options.sameSite - SameSite 属性
  */
 const setCookie = (name, value, options = {}) => {
-  const {
-    maxAge,
-    expires,
-    path = '/',
-    domain,
-    secure,
-    sameSite = 'Lax',
-  } = options
+  const { maxAge, expires, path = '/', domain, secure, sameSite = 'Lax' } = options
 
   let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
 
@@ -64,11 +57,9 @@ const setCookie = (name, value, options = {}) => {
  * @param {string} name - Cookie 名称
  * @returns {string|null} Cookie 值，不存在返回 null
  */
-const getCookie = (name) => {
+const getCookie = name => {
   const cookies = document.cookie.split('; ')
-  const cookie = cookies.find((row) =>
-    row.startsWith(`${encodeURIComponent(name)}=`),
-  )
+  const cookie = cookies.find(row => row.startsWith(`${encodeURIComponent(name)}=`))
 
   if (cookie) {
     const value = cookie.split('=')[1]
@@ -97,7 +88,7 @@ const removeCookie = (name, options = {}) => {
  * @param {string} name - Cookie 名称
  * @returns {boolean} 是否存在
  */
-const hasCookie = (name) => {
+const hasCookie = name => {
   return getCookie(name) !== null
 }
 
@@ -109,7 +100,7 @@ const getAllCookies = () => {
   const cookies = {}
   const cookieArray = document.cookie.split('; ')
 
-  cookieArray.forEach((cookie) => {
+  cookieArray.forEach(cookie => {
     if (cookie) {
       const [name, value] = cookie.split('=')
       if (name && value) {
@@ -129,7 +120,7 @@ const getAllCookies = () => {
  */
 const clearAllCookies = (options = {}) => {
   const cookies = getAllCookies()
-  Object.keys(cookies).forEach((name) => {
+  Object.keys(cookies).forEach(name => {
     removeCookie(name, options)
   })
 }
@@ -148,4 +139,3 @@ export const cookieUtils = {
 }
 
 export default cookieUtils
-
