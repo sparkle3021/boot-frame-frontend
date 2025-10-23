@@ -13,7 +13,12 @@ export function loadModuleRoutes() {
   for (const path in modules) {
     const module = modules[path]
     if (module.default) {
-      routes.push(module.default)
+      // 支持单个路由对象或路由数组
+      if (Array.isArray(module.default)) {
+        routes.push(...module.default)
+      } else {
+        routes.push(module.default)
+      }
     }
   }
 

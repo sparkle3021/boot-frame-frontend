@@ -1,5 +1,4 @@
 <script setup>
-import { Icon } from '@iconify/vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
 
@@ -29,46 +28,89 @@ const searchColumns = [
   },
 ]
 
-// 表格列配置
+// VxeGrid 表格列配置
 const columns = [
+  // 复选框列
   {
-    label: 'ID',
-    prop: 'id',
+    type: 'checkbox',
+    width: 60,
+    fixed: 'left',
+    align: 'center',
+  },
+  // 序号列
+  {
+    type: 'seq',
+    title: '序号',
     width: 80,
+    fixed: 'left',
+    align: 'center',
   },
+  // ID列
   {
-    label: '用户名',
-    prop: 'username',
+    field: 'id',
+    title: 'ID',
+    width: 80,
+    align: 'center',
+    sortable: true,
   },
+  // 用户名
   {
-    label: '昵称',
-    prop: 'nickname',
+    field: 'username',
+    title: '用户名',
+    minWidth: 120,
+    showOverflow: 'tooltip',
   },
+  // 昵称
   {
-    label: '邮箱',
-    prop: 'email',
+    field: 'nickname',
+    title: '昵称',
+    minWidth: 120,
+    showOverflow: 'tooltip',
   },
+  // 邮箱
   {
-    label: '手机号',
-    prop: 'phone',
+    field: 'email',
+    title: '邮箱',
+    minWidth: 180,
+    showOverflow: 'tooltip',
   },
+  // 手机号
   {
-    label: '角色',
-    prop: 'role',
+    field: 'phone',
+    title: '手机号',
+    minWidth: 140,
+    align: 'center',
   },
+  // 角色
   {
-    label: '状态',
-    prop: 'status',
+    field: 'role',
+    title: '角色',
+    minWidth: 120,
+    align: 'center',
+  },
+  // 状态（使用插槽自定义渲染）
+  {
+    field: 'status',
+    title: '状态',
     width: 100,
-    valueType: 'select',
-    options: [
-      { label: '启用', value: 1, color: 'green' },
-      { label: '禁用', value: 0, color: 'red' },
-    ],
+    align: 'center',
+    slots: { default: 'status' },
   },
+  // 创建时间
   {
-    label: '创建时间',
-    prop: 'createTime',
+    field: 'createTime',
+    title: '创建时间',
+    minWidth: 180,
+    align: 'center',
+    sortable: true,
+  },
+  // 操作列（使用插槽自定义渲染）
+  {
+    title: '操作',
+    width: 280,
+    fixed: 'right',
+    align: 'center',
+    slots: { default: 'action' },
   },
 ]
 
@@ -129,74 +171,35 @@ const mockData = [
 // 表格数据
 const tableData = ref([])
 const loading = ref(false)
-const selectedRows = ref([])
+const gridRef = ref()
 
-// 分页数据
-const pagination = reactive({
-  page: 1,
+// 分页配置
+const pagerConfig = reactive({
+  // 启用分页（必须显式启用）
+  enabled: true,
+  // 当前页码
+  currentPage: 1,
+  // 每页显示条数
   pageSize: 10,
+  // 总条数
   total: 0,
 })
 
+// 工具栏配置（只需要配置额外的功能，基础配置会自动合并）
+const toolbarConfig = {
+  // 显示刷新按钮（在工具栏右侧）
+  refresh: true,
+  // 刷新配置
+  refreshOptions: {
+    // 查询方法
+    query: () => {
+      handleRefresh()
+    },
+  },
+}
+
 // 搜索表单数据
 const searchForm = ref({})
-
-// 操作按钮配置
-const actionButtons = [
-  {
-    text: '编辑',
-    code: 'edit',
-    props: {
-      type: 'primary',
-      size: 'small',
-    },
-  },
-  {
-    text: '启用',
-    code: 'enable',
-    props: row => ({
-      type: row.status === 1 ? 'warning' : 'success',
-      size: 'small',
-    }),
-    show: row => row.status === 0,
-  },
-  {
-    text: '禁用',
-    code: 'disable',
-    props: {
-      type: 'warning',
-      size: 'small',
-    },
-    show: row => row.status === 1,
-  },
-  {
-    text: '删除',
-    code: 'delete',
-    props: {
-      type: 'danger',
-      size: 'small',
-    },
-    confirm: {
-      message: data => `确定要删除用户 "${data.row.username}" 吗？此操作不可恢复！`,
-    },
-  },
-]
-
-// 处理操作按钮点击
-const handleAction = ({ code, row, index }) => {
-  switch (code) {
-    case 'edit':
-      handleEdit(row)
-      break
-    case 'enable':
-    case 'disable':
-      handleToggleStatus(row)
-      break
-    case 'delete':
-      handleDelete(row)
-      break
-  }
-}
 
 // 加载数据的方法
 const loadData = async (params = {}) => {
@@ -222,11 +225,11 @@ const loadData = async (params = {}) => {
     }
 
     // 模拟分页
-    const start = (pagination.page - 1) * pagination.pageSize
-    const end = start + pagination.pageSize
+    const start = (pagerConfig.currentPage - 1) * pagerConfig.pageSize
+    const end = start + pagerConfig.pageSize
 
     tableData.value = filteredData.slice(start, end)
-    pagination.total = filteredData.length
+    pagerConfig.total = filteredData.length
 
     return {
       data: tableData.value,
@@ -246,14 +249,14 @@ const loadData = async (params = {}) => {
 // 搜索
 const handleSearch = values => {
   searchForm.value = values
-  pagination.page = 1
+  pagerConfig.currentPage = 1
   loadData()
 }
 
 // 重置
 const handleReset = () => {
   searchForm.value = {}
-  pagination.page = 1
+  pagerConfig.currentPage = 1
   loadData()
 }
 
@@ -288,49 +291,40 @@ const handleToggleStatus = async row => {
 
 // 删除用户
 const handleDelete = async row => {
-  try {
-    await ElMessageBox.confirm(`确定要删除用户 "${row.username}" 吗？此操作不可恢复！`, '警告', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'error',
-    })
-
-    // 模拟API调用
-    const index = tableData.value.findIndex(item => item.id === row.id)
-    if (index > -1) {
-      tableData.value.splice(index, 1)
-      pagination.total--
-    }
-    ElMessage.success('删除成功')
-    loadData()
-  } catch {
-    // 用户取消操作
+  // 模拟API调用
+  const index = tableData.value.findIndex(item => item.id === row.id)
+  if (index > -1) {
+    tableData.value.splice(index, 1)
+    pagerConfig.total--
   }
+  ElMessage.success('删除成功')
+  loadData()
 }
 
 // 分页改变
-const handlePaginationChange = (page, pageSize) => {
-  pagination.page = page
-  pagination.pageSize = pageSize
+const handlePageChange = ({ currentPage, pageSize }) => {
+  pagerConfig.currentPage = currentPage
+  pagerConfig.pageSize = pageSize
   loadData()
 }
 
 // 刷新
 const handleRefresh = () => {
-  ElMessage.success('刷新成功')
   loadData()
+  ElMessage.success('刷新成功')
 }
 
 // 批量删除
 const handleBatchDelete = async () => {
-  if (!selectedRows.value.length) {
+  const selectRecords = gridRef.value?.getCheckboxRecords() || []
+  if (!selectRecords.length) {
     ElMessage.warning('请选择要删除的用户')
     return
   }
 
   try {
     await ElMessageBox.confirm(
-      `确定要删除选中的 ${selectedRows.value.length} 个用户吗？此操作不可恢复！`,
+      `确定要删除选中的 ${selectRecords.length} 个用户吗？此操作不可恢复！`,
       '警告',
       {
         confirmButtonText: '确定',
@@ -340,8 +334,8 @@ const handleBatchDelete = async () => {
     )
 
     // 模拟API调用
-    selectedRows.value = []
     ElMessage.success('批量删除成功')
+    gridRef.value?.clearCheckboxRow()
     loadData()
   } catch {
     // 用户取消操作
@@ -360,9 +354,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="user-list">
+  <div>
     <!-- 搜索表单 -->
-    <el-card class="search-card">
+    <el-card>
       <PlusSearch
         v-model="searchForm"
         :columns="searchColumns"
@@ -374,44 +368,62 @@ onMounted(() => {
 
     <!-- 数据表格 -->
     <ProTable
+      ref="gridRef"
+      class="mt-1rem"
       v-loading="loading"
+      height="520"
       :columns="columns"
-      :table-data="tableData"
-      :pagination="pagination"
-      :title-bar="{ title: '用户列表' }"
-      :has-toolbar="true"
-      :action-bar="{
-        buttons: actionButtons,
-        type: 'button',
-      }"
+      :data="tableData"
+      :pager-config="pagerConfig"
+      :toolbar-config="toolbarConfig"
       stripe
-      @page-change="handlePaginationChange"
-      @clickAction="handleAction"
+      @page-change="handlePageChange"
     >
-      <!-- 左侧标题栏按钮 -->
-      <template #title>
-        <el-button type="primary" size="small" @click="handleAdd">
-          <Icon icon="mdi:plus" width="16" />
+      <!-- 工具栏左侧按钮插槽 -->
+      <template #tool>
+        <el-button type="primary" @click="handleAdd">
+          <template #icon>
+            <i class="vxe-icon-add"></i>
+          </template>
           新增用户
         </el-button>
-        <el-button
-          type="danger"
-          size="small"
-          :disabled="!selectedRows.length"
-          @click="handleBatchDelete"
-        >
-          <Icon icon="mdi:delete" width="16" />
+        <el-button type="danger" @click="handleBatchDelete">
+          <template #icon>
+            <i class="vxe-icon-delete"></i>
+          </template>
           批量删除
         </el-button>
+        <el-button @click="handleExport">
+          <template #icon>
+            <i class="vxe-icon-download"></i>
+          </template>
+          导出
+        </el-button>
+      </template>
+
+      <!-- 状态列 -->
+      <template #status="{ row }">
+        <el-tag :type="row.status === 1 ? 'success' : 'danger'" size="small">
+          {{ row.status === 1 ? '启用' : '禁用' }}
+        </el-tag>
+      </template>
+
+      <!-- 操作列 -->
+      <template #action="{ row }">
+        <el-button type="primary" size="small" @click="handleEdit(row)">编辑</el-button>
+        <el-button
+          v-if="row.status === 1"
+          type="warning"
+          size="small"
+          @click="handleToggleStatus(row)"
+        >
+          禁用
+        </el-button>
+        <el-button v-else type="success" size="small" @click="handleToggleStatus(row)">
+          启用
+        </el-button>
+        <el-button type="danger" size="small" @click="handleDelete(row)">删除</el-button>
       </template>
     </ProTable>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.user-list {
-  .search-card {
-    margin-bottom: 20px;
-  }
-}
-</style>
